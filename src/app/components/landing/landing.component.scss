@@ -1,18 +1,8 @@
 @import '../../../assets/scss/base/variables';
 @import '../../../assets/scss/base/mixins';
-/////////////////
-//TODO: figure out which css here is ONLY for landing page
-////////////////
+
 body {
   background-color: #fff;
-}
-
-.header_main {
-  background: transparent;
-  position: absolute;
-  z-index: 1;
-  top: 0px;
-  box-shadow: inherit;
 }
 
 .main_banner {
@@ -104,10 +94,6 @@ body {
   }
 }
 
-.login_header {
-  border-top: 5px solid #363636;
-}
-
 .profile_sec {
   background-color: #fff;
   border: 1px solid rgba(0, 0, 0, 0.15);
@@ -118,7 +104,7 @@ body {
     padding: 15px;
   }
 
-  .pro_1 {
+  .profile_1 {
     float: left;
     width: 175px;
 
@@ -174,10 +160,6 @@ body {
   }
 }
 
-.owl-carousel {
-  display: block;
-}
-
 .team_hd {
   h3 {
     font-size: 20px;
@@ -205,112 +187,9 @@ body {
   margin-bottom: 26px;
 }
 
-.owl-carousel {
-  position: relative;
-}
-
-.owl-nav {
-  position: absolute;
-  width: 100%;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 1555;
-  display: block !important;
-
-  @include breakpoint(large) {
-    display: none !important;
-  }
-
-  .owl-prev {
-    position: relative;
-    left: -50px;
-    top: 0px;
-    float: left;
-    width: 40px;
-    height: 40px;
-
-    &:before {
-      position: absolute;
-      width: 20px;
-      left: 0;
-      height: 38px;
-      background: url(../../../assets/images/pre_arrow.png) no-repeat;
-      background-size: 100%;
-      content: '';
-    }
-
-    span {
-      font-size: 0;
-    }
-
-    &:hover {
-      &:before {
-        background-position: left bottom;
-      }
-    }
-  }
-
-  .owl-next {
-    position: relative;
-    right: -50px;
-    top: 0px;
-    float: right;
-    width: 40px;
-    height: 40px;
-
-    &:before {
-      position: absolute;
-      width: 20px;
-      right: 0;
-      height: 38px;
-      background: url(../../../assets/images/next_arrow.png) no-repeat;
-      background-size: 100%;
-      content: '';
-    }
-
-    span {
-      font-size: 0;
-    }
-
-    &:hover {
-      &:before {
-        background-position: left bottom;
-      }
-    }
-  }
-}
-
-.owl-prev:active,
-.owl-next:hover {
-  color: #ef3500;
-}
-
-.owl-dots {
-  text-align: center;
-  width: 100%;
-  margin: 10px 0;
-
-  .owl-dot {
-    background: #c5c6cc !important;
-    margin: 0 6px;
-    width: 9px;
-    height: 9px;
-    @include border-radius(50%);
-
-    &.active {
-      background: #f45117 !important;
-    }
-  }
-}
-
 .team {
   margin-top: -210px;
   position: relative;
-}
-
-.owl-next:focus,
-.owl-prev:focus {
-  outline: none;
 }
 
 .img_sec {
@@ -907,7 +786,7 @@ body {
   left: 47%;
 }
 
-.des1 {
+.blog-des {
   width: 55%;
   background: #f3f3f3;
   padding: 23px;
@@ -949,7 +828,7 @@ body {
   position: relative;
 }
 
-.time {
+.date {
   background: url(../../../assets/images/blog_sprite.png);
   background-repeat: no-repeat;
   width: 20px;
@@ -960,7 +839,7 @@ body {
   top: 0px;
 }
 
-.time1 {
+.time {
   background: url(../../../assets/images/blog_sprite.png);
   background-repeat: no-repeat;
   width: 20px;
@@ -989,7 +868,7 @@ p.time_p:after {
   margin-top: 17px;
 }
 
-.des1:hover {
+.blog-des:hover {
   background-color: #f45117;
   color: #fff;
   transition: all ease 0.1s;
@@ -999,11 +878,11 @@ p.time_p:after {
     color: #fff;
   }
 
-  .time {
+  .date {
     background-position: 0px -14px;
   }
 
-  .time1 {
+  .time {
     background-position: 0 -46px;
   }
 
@@ -1018,27 +897,11 @@ p.time_p:after {
   }
 }
 
-.img_sec_hover {
-  background: rgba(0, 0, 0, 0.15);
-}
-
-.blg_part {
+.blog_part {
   padding-top: 84px;
 
   @include breakpoint(small) {
     padding-top: 40px;
-  }
-}
-
-.blog_sec .owl-nav {
-  position: absolute;
-  width: 100%;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 10;
-
-  &.disabled {
-    display: block;
   }
 }
 
@@ -1144,14 +1007,6 @@ h6 {
   padding-top: 31px;
 }
 
-.slick-list {
-  padding: 30px 0px !important;
-}
-
-.slick-slide {
-  padding-bottom: 12px;
-}
-
 .testimonial_sec {
   background: url(../../../assets/images/testimonials_bg.jpg) left bottom no-repeat;
   background-size: cover;
@@ -1242,36 +1097,6 @@ h6 {
   }
 }
 
-.slick-current {
-  transform: scale(1.1);
-  opacity: 1;
-
-  .main_sec_test {
-    opacity: 1;
-
-    .top_sec {
-      background: #ef3500;
-
-      p {
-        color: #fff;
-
-        &:before {
-          background: url(../../../assets/images/quated_wh.png) no-repeat;
-          background-size: 100%;
-        }
-      }
-    }
-
-    .bottom_sec {
-      .bottom_secL {
-        &:before {
-          border: 2px dashed #f45117;
-        }
-      }
-    }
-  }
-}
-
 .partner_sec {
   background: url(../../../assets/images/market-place-bg.jpg);
   background-repeat: no-repeat;
@@ -1302,8 +1127,6 @@ h6 {
     margin: 0px 20px 0px 20px;
   }
 }
-
-
 
 .cursor{cursor: pointer;}
 ::ng-deep .owl-nav {

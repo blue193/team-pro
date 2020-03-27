@@ -43,15 +43,15 @@
       <h2>Live Bids From Service Professionals!</h2>
     </div>
     <owl-carousel [options]="carouselOptions">
-      <div class="item" *ngFor="let service of servicesData;let i = index">
+      <div *ngFor="let service of servicesData;let i = index">
         <div class="profile_sec">
-          <div class="pro_1">
+          <div class="profile_1">
             <img [src]="service.image" alt="profile">
           </div>
           <div class="des">
             <h3>{{service.name}} <br> <span>{{service.job}} </span></h3>
             <p class="common_p">{{service.comment}}</p>
-            <a (click)="openDetailDBx(service)" class="cursor"> Read More </a>
+            <a (click)="openDetailDialogBox(service)" class="cursor"> Read More </a>
           </div>
         </div>
       </div>
@@ -99,21 +99,17 @@
       <p class="common_p"> Our platform empowers you to find and choose the right service provider for your project
         either small or<br> complex. We want to make the process of repair, installation and services easy for you.</p>
     </div>
-
-
     <div class="row" *ngFor="let categoryRow of categories">
       <div class="col col{{i+1}} catgory_box" *ngFor="let category of categoryRow; let i = index;">
         <div class="category">
           <div class="cate_img"> <img [src]="category.thumb" class="img-fluid" alt="category_image">
           </div>
-          <div class="overlay"><a [routerLink]="['/category',category.id]" > {{category.title}} </a> </div>
+          <div class="overlay"><a [routerLink]="['/category',category.id]"> {{category.title}} </a> </div>
         </div>
       </div>
-
     </div>
-    
     <div class="text-center all_cete_btn">
-      <a  [routerLink]="['/category','all']">See All Categories </a>
+      <a [routerLink]="['/category','all']">See All Categories </a>
     </div>
   </div>
 </div>
@@ -130,6 +126,7 @@
     </div>
   </div>
 </div>
+
 <div class="container-fluid partner_sec ">
   <div class="container">
     <div class=" text-center sec_icon"> </div>
@@ -143,6 +140,7 @@
     </div>
   </div>
 </div>
+
 <div class="container-fluid category_out testimonial_sec">
   <div class="container">
     <div class="text-center category_hd">
@@ -151,11 +149,7 @@
     </div>
     <div class="container testimo-sec">
       <div class="center slider responsive">
-
-        <ngx-slick-carousel 
-          class="carousel" 
-          #slickModal="slick-carousel" 
-          [config]="slickSlideConfig">
+        <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slickSlideConfig">
           <div ngxSlickItem *ngFor="let item of items;" class="slide">
             <div class="main_sec_test">
               <div class="top_sec">
@@ -169,41 +163,22 @@
             </div>
           </div>
         </ngx-slick-carousel>
-
-        <!-- <div *ngFor="let item of items;">
-          <div class="main_sec_test">
-            <div class="top_sec">
-              <p>{{item.content}}</p>
-            </div>
-            <div class="bottom_sec">
-              <span class="bottom_secR">
-                <span class="text_name">{{item.name}}<br><span>{{item.location}}</span></span>
-              </span>
-            </div>
-          </div>
-        </div> -->
-
-
       </div>
     </div>
   </div>
 </div>
+
 <div class="container-fluid video_sec">
   <div class="container">
     <h2 class="text-center">Watch <span>Videos</span> </h2>
     <div class="vid row">
       <div class="first_sec row">
-        <xb-video 
-          class="col-sm-6 col-md-6 col-lg-6 col-xl-6 first_sec_box" 
-          *ngFor="let video of videos | slice:0:4;" 
+        <xb-video class="col-sm-6 col-md-6 col-lg-6 col-xl-6 first_sec_box" *ngFor="let video of videos | slice:0:4;"
           [video]="video">
         </xb-video>
       </div>
       <div class="second_sec">
-        <xb-video 
-          class="col-lg-12 row" 
-          *ngFor="let video of videos | slice:12:13;" 
-          [video]="video">
+        <xb-video class="col-lg-12 row" *ngFor="let video of videos | slice:12:13;" [video]="video">
         </xb-video>
       </div>
       <div class="text-center Sec_btn">
@@ -224,6 +199,7 @@
     </div>
   </div>
 </div>
+
 <div class="trending_projects container-fluid">
   <div class="container">
     <div class=" text-center pro_text">
@@ -255,10 +231,9 @@
       <h3> From our </h3>
       <h2>Lastest Blog</h2>
     </div>
-    <div class="blg_part">
-
+    <div class="blog_part">
       <owl-carousel [options]="carouselOptions">
-        <div *ngFor="let blog of blogs" class="item">
+        <div *ngFor="let blog of blogs">
           <div class="firt_blog">
             <div class="img_sec">
               <img src="{{blog.thumb}}" alt="profile">
@@ -270,12 +245,12 @@
               </div>
             </div>
             <a href={{blog.url}}>
-              <div class="des1">
+              <div class="blog-des">
                 <h5>{{blog.title}}</h5>
                 <div class="blg_icons">
-                  <div class="time"> </div>
+                  <div class="date"> </div>
                   <p class="time_p">16 Nov, 2015</p>
-                  <div class="time1"> </div>
+                  <div class="time"> </div>
                   <p class="time_p">04:30 PM</p>
                 </div>
                 <p class="common_p">{{blog.description | limitTo:110}}</p>
@@ -283,110 +258,11 @@
             </a>
           </div>
         </div>
-        <!-- <div class="item">
-          <div class="firt_blog">
-            <div class="img_sec">
-              <img src="../assets/images/blog_img1.jpg" alt="profile">
-              <div class="hover_icons">
-                <ul>
-                  <li><a href="#"> <img src="../assets/images/plus.png" alt="icon"> </a></li>
-                  <li><a href="#"> <img src="../assets/images/share.png" alt="icon"> </a></li>
-                </ul>
-              </div>
-            </div>
-            <div class="des1">
-              <h5>How to post your gadget</h5>
-              <div class="blg_icons">
-                <div class="time"> </div>
-                <p class="time_p">16 Nov, 2015</p>
-                <div class="time1"> </div>
-                <p class="time_p">04:30 PM</p>
-              </div>
-              <p class="common_p"> Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
-                doloremque laudantium, totam rem aperiam...</p>
-            </div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="firt_blog">
-            <div class="img_sec">
-              <img src="../assets/images/blog_img2.jpg" alt="profile">
-              <div class="hover_icons">
-                <ul>
-                  <li><a href="#"> <img src="../assets/images/plus.png" alt="icon"> </a></li>
-                  <li><a href="#"> <img src="../assets/images/share.png" alt="icon"> </a></li>
-                </ul>
-              </div>
-            </div>
-            <div class="des1">
-              <h5>How to post your gadget</h5>
-              <div class="blg_icons">
-                <div class="time"> </div>
-                <p class="time_p">16 Nov, 2015</p>
-                <div class="time1"> </div>
-                <p class="time_p">04:30 PM</p>
-              </div>
-              <p class="common_p"> Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
-                doloremque laudantium, totam rem aperiam...</p>
-            </div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="firt_blog">
-            <div class="img_sec">
-              <img src="../assets/images/blog_img1.jpg" alt="profile">
-              <div class="hover_icons">
-                <ul>
-                  <li><a href="#"> <img src="../assets/images/plus.png" alt="icon"> </a></li>
-                  <li><a href="#"> <img src="../assets/images/share.png" alt="icon"> </a></li>
-                </ul>
-              </div>
-            </div>
-            <div class="des1">
-              <h5>How to post your gadget</h5>
-              <div class="blg_icons">
-                <div class="time"> </div>
-                <p class="time_p">16 Nov, 2015</p>
-                <div class="time1"> </div>
-                <p class="time_p">04:30 PM</p>
-              </div>
-              <p class="common_p"> Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
-                doloremque laudantium, totam rem aperiam...</p>
-            </div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="firt_blog">
-            <div class="img_sec">
-              <img src="../assets/images/blog_img2.jpg" alt="profile">
-              <div class="hover_icons">
-                <ul>
-                  <li><a href="#"> <img src="../assets/images/plus.png" alt="icon"> </a></li>
-                  <li><a href="#"> <img src="../assets/images/share.png" alt="icon"> </a></li>
-                </ul>
-              </div>
-            </div>
-            <div class="des1">
-              <h5>How to post your gadget</h5>
-              <div class="blg_icons">
-                <div class="time"> </div>
-                <p class="time_p">16 Nov, 2015</p>
-                <div class="time1"> </div>
-                <p class="time_p">04:30 PM</p>
-              </div>
-              <p class="common_p"> Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
-                doloremque laudantium, totam rem aperiam...</p>
-            </div>
-          </div>
-        </div> -->
-    </owl-carousel>
-
-
+      </owl-carousel>
     </div>
   </div>
 </div>
 
- 
 <div class="download_app">
   <div class="container">
     <div class="text-center download_hd">

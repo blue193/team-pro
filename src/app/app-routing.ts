@@ -1,6 +1,4 @@
-import { CalendarComponent } from './components/calendar-page/components/calendar/calendar.component';
 import { Routes } from '@angular/router';
-
 import { LandingComponent } from './components/landing/landing.component';
 import { VideosComponent } from './components/videos/videos.component';
 import { ErrorComponent } from './core/error/error.component';
@@ -14,10 +12,13 @@ export const appRoutes: Routes = [
   { path: 'error', component: ErrorComponent },
   { path: '401', pathMatch: 'full', component: NoAccessComponent }, // NO ACCESS
   { path: '404', pathMatch: 'full', component: PageNotFoundComponent }, // NOT FOUND
-   {
+  {
     path: 'category',
     loadChildren: './components/category/category.module#CategoryModule'
   },
-  { path: 'calendar', component: CalendarComponent },
+  {
+    path: 'calendar',
+    loadChildren: './components/calendar-page/calendar-page.module#CalendarPageModule' 
+  },
   { path: '**', pathMatch: 'full', component: PageNotFoundComponent }
 ];

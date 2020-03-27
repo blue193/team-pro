@@ -6,14 +6,9 @@
   </div>
 </div>
 <div class="container">
-  <div id="how-itworks" class="container-fluid how-it-works">
+  <div id="videos" class="container-fluid videos">
     <div class="row">
-      <xb-video 
-        *ngFor="let video of videos | slice:0:12;" 
-        class="col-sm-3" 
-        [video]="video"
-        showTitle="true"
-      ></xb-video>
+      <xb-video *ngFor="let video of videos | slice:0:12;" class="col-sm-3" [video]="video" showTitle="true"></xb-video>
     </div>
   </div>
 </div>

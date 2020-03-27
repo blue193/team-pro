@@ -1,6 +1,3 @@
-
- 
-import { CalendarComponent } from './components/calendar-page/components/calendar/calendar.component';
 import { AppComponent } from './app.component';
 import { RouterModule, PreloadAllModules } from '@angular/router';
 import {
@@ -28,18 +25,14 @@ import { MatSelectModule } from '@angular/material/select';
 
 // components 
 import { LandingComponent } from './components/landing/landing.component';
-import { ServicedialogboxComponent } from './components/landing/servicedialogbox/servicedialogbox.component';
+import { ServiceDialogBoxComponent } from './components/landing/servicedialogbox/servicedialogbox.component';
 import { VideoDialogboxComponent } from './core/video/video-dialogbox/video-dialogbox.component';
 import { VideosComponent } from './components/videos/videos.component';
  
 // pipes
 import { TruncatePipe } from './shared/_pipes/str-limit.pipe';
+import { AsFormArrayPipe } from './shared/_pipes/form-array.pipe';
 import { CalendarDialogboxComponent } from './components/calendar-page/components/calendar-dialogbox/calendar-dialogbox.component'; 
-
-// other import 
-import { FlatpickrModule } from 'angularx-flatpickr';
-import { CalendarModule, DateAdapter } from 'angular-calendar';
-import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
 @NgModule({
   imports: [
@@ -56,31 +49,23 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
     ReactiveFormsModule,
     OwlModule,
     RouterModule.forRoot(appRoutes, { preloadingStrategy: PreloadAllModules, scrollPositionRestoration: 'enabled' }),
-    CalendarModule.forRoot({
-      provide: DateAdapter,
-      useFactory: adapterFactory
-    }),
-    FlatpickrModule.forRoot(),
     SlickCarouselModule,
     MatSelectModule
   ],
   entryComponents: [
-    ServicedialogboxComponent,
+    ServiceDialogBoxComponent,
     VideoDialogboxComponent,
     CalendarDialogboxComponent
   ],
   declarations: [
     AppComponent, 
     LandingComponent, 
-    ServicedialogboxComponent, 
+    ServiceDialogBoxComponent, 
     VideosComponent, 
-    CalendarComponent,
     TruncatePipe,
     CalendarDialogboxComponent
   ],
-
   providers: [],
-
   bootstrap: [AppComponent]
 })
 

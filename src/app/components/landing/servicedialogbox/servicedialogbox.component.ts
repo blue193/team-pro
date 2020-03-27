@@ -6,11 +6,11 @@ import { Component, OnInit, Inject } from '@angular/core';
   templateUrl: './servicedialogbox.component.html',
   styleUrls: ['./servicedialogbox.component.scss']
 })
-export class ServicedialogboxComponent implements OnInit {
- 
+export class ServiceDialogBoxComponent implements OnInit {
+
   constructor(
-    public dialogRef: MatDialogRef<ServicedialogboxComponent>,
-    @Inject(MAT_DIALOG_DATA) public data) {}
+    public dialogRef: MatDialogRef<ServiceDialogBoxComponent>,
+    @Inject(MAT_DIALOG_DATA) public data) { }
 
   ngOnInit() {
   }
