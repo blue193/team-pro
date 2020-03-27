@@ -63,6 +63,7 @@ import { CalendarDialogboxComponent } from './components/calendar-page/component
     ServiceDialogBoxComponent, 
     VideosComponent, 
     TruncatePipe,
+    AsFormArrayPipe,
     CalendarDialogboxComponent
   ],
   providers: [],
