@@ -1,5 +1,5 @@
 import { iBlog } from './../../shared/_models/blog.model';
-import { Categories } from './../../shared/_models/category.model';
+import { Categories, Category } from './../../shared/_models/category.model';
 import { ApiService } from './../../shared/_services/api.service';
 import { iVideo } from 'src/app/shared/_models/video.model';
 import { CommonApiService } from './../../shared/_services/common-api.service';
@@ -79,7 +79,8 @@ export class LandingComponent implements OnInit {
     ]
   }
 
-  categories: Categories[];
+  homeServicesSubCategory: Categories[];
+  homeServicesCategory: Category;
   trendingProject;
 
   constructor(
@@ -91,7 +92,23 @@ export class LandingComponent implements OnInit {
     // Append class to body tag.
     const body = document.getElementsByTagName('body')[0];
     body.classList.add('landing');
-    this.apiService.getAllCategories(true).subscribe(response => this.categories = response);
+    
+    this.apiService.getCategory(11).subscribe((response: Category) => {
+      this.homeServicesCategory = response;
+    // convert data in to chunks to show 5 items per row. 
+    if (response.subcategory && response.subcategory.length > 5 ) {
+      // slice the list of categories in a gorup of five category. 
+      let categoryListRows = []
+      for (let i = 0; i < response.subcategory.length; i += 5) {
+        let chunk = response.subcategory.slice(i, i + 5)
+        categoryListRows.push(chunk)
+      }
+      this.homeServicesSubCategory = categoryListRows;
+    } else {
+      this.homeServicesSubCategory = [response.subcategory];
+    }
+    });
+
     this.commonApiService.getAllVideos().subscribe(res => this.videos = res);
     this.commonApiService.getAllBlogs().subscribe(res => this.blogs = res);
     this.apiService.getTrendingProjects().subscribe(response => { this.trendingProject = response; });

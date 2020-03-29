@@ -3,75 +3,7 @@
   <div class="container services">
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 left-services">
-        <h1>Service Categories</h1>
-        <ul class="msg-list nav nav-stacked" id="chat-accordion">
-          
-          <li class="panel">
-            <a data-toggle="collapse" class="collapsed" aria-expanded="false" (click)="toggleMenu('home_services')">
-              <span class="f-pro1 m-prof"></span>
-              <span class="frinds-list">Home Service</span>
-              <span class="list-arrow"></span>
-            </a>
-            <!-- Sub list -->
-            <ul id="Group1" class="sugstd-matchs-list collapse" [class.show]="openMenu.indexOf('home_services') !== -1">
-              <li *ngFor="let category of categoriesList">
-                <a [routerLink]="['/category',category.id]">{{category.title}}</a>
-              </li>
-            </ul>
-            <!-- Sub list Ends -->
-          </li>
-
-          <li class="panel">
-            <a data-toggle="collapse" data-parent="#chat-accordion">
-              <span class="f-pro12 m-prof"></span><span class="frinds-list">Motorcycle</span>
-            </a>
-          </li>
-
-          <li class="panel">
-            <a data-toggle="collapse" data-parent="#chat-accordion" class="collapsed" aria-expanded="false">
-              <span class="f-pro11 m-prof"></span><span class="frinds-list">Medical Equipment</span>
-              <span class="list-arrow"></span>
-            </a>
-          </li>
-
-          <li class="panel">
-            <a data-toggle="collapse" data-parent="#chat-accordion" class="collapsed" aria-expanded="false"><span
-                class="f-pro8 m-prof"></span><span class="frinds-list">Heavy Equipment</span>
-              <span class="list-arrow"></span></a></li>
-
-          <li class="panel">
-            <a data-toggle="collapse" data-parent="#chat-accordion" class="collapsed" aria-expanded="false"><span
-                class="f-pro5 m-prof"></span><span class="frinds-list">Boats</span>
-              <span class="list-arrow"></span></a></li>
-
-          <li class="panel">
-            <a data-toggle="collapse" data-parent="#chat-accordion"><span class="f-pro9 m-prof"></span><span
-                class="frinds-list">Metal Fabrication</span>
-            </a></li>
-
-          <li class="panel">
-            <a data-toggle="collapse" data-parent="#chat-accordion"><span class="f-pro10 m-prof"></span>
-              <span class="frinds-list">Business/Industrial</span></a></li>
-
-          <li class="panel">
-            <a data-toggle="collapse" data-parent="#chat-accordion"><span class="f-pro6 m-prof"></span>
-              <span class="frinds-list">Semi-Truck/ RV</span></a></li>
-
-          <li class="panel">
-            <a data-toggle="collapse" data-parent="#chat-accordion" class="collapsed" aria-expanded="false">
-              <span class="f-pro2 m-prof"></span><span class="frinds-list">Automotive</span>
-              <span class="list-arrow"></span></a></li>
-
-          <li class="panel">
-            <a data-toggle="collapse" data-parent="#chat-accordion" class="collapsed" aria-expanded="false">
-              <span class="f-pro3 m-prof"></span><span class="frinds-list">Arts/Craft</span>
-              <span class="list-arrow"></span></a></li>
-
-          <li class="panel">
-            <a data-toggle="collapse" data-parent="#chat-accordion" class="collapsed" aria-expanded="false">
-              <span class="f-pro4 m-prof"></span><span class="frinds-list">Gadget</span>
-              <span class="list-arrow"></span></a></li>
-        </ul>
+        <xb-left-side-nav></xb-left-side-nav>
       </div>
 
       <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 privacy-sec categories-right">

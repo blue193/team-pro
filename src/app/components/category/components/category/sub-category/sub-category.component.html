@@ -1,9 +1,9 @@
-<div class="content-sec" id="Home-service">
-  <h1>{{catData.title}}</h1>
+<div class="content-sec" id="Home-service" *ngIf="subCategory">
+  <h1>{{subCategory.title}}</h1>
   <div class="categories-types">
-    <div *ngFor="let catimage of catData.images" class="cat_images">
+    <div *ngFor="let catimage of subCategory.images" class="cat_images">
       <img [src]="catimage" alt="">
     </div>
   </div>
-  <div class="cat_des" [innerHTML]="catData.description"></div>
+  <div class="cat_des" [innerHTML]="subCategory.description"></div>
 </div>

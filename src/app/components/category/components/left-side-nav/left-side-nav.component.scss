@@ -1,0 +1,102 @@
+h1 { font-size: 20px; }
+#chat-accordion {
+ border: 1px solid #ddd;
+ box-shadow: 0 0 3px #eee;
+ margin-top: 30px;
+ min-height: 724px;
+
+ li {
+     background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+     border: 0 none;
+     border-radius: 0;
+     box-shadow: none;
+     margin: 0;
+     width: 100%;
+     padding: 0;
+     
+     ul.sugstd-matchs-list {
+         list-style: outside none none;
+         padding: 0;
+         width: 100%;
+         float: left;
+         height: 212px;
+         overflow-y: scroll;
+
+         li {
+             background: #f0f0f0 none repeat scroll 0 0;
+             border-bottom: 1px solid #dadada;
+             float: left;
+             position: relative;
+             width: 100%;
+             a {
+                 background: #f3f3f3 none repeat scroll 0 0;
+                 color: #343434;
+                 text-decoration: none;
+                 border: none;
+                 &:hover,
+                 &:focus {
+                     background: #f45117 none repeat scroll 0 0;
+                     color: #fff;
+                     text-decoration: none;
+                 }
+             }
+             a.active{
+                 background: #f45117 none repeat scroll 0 0;
+                 color: #fff;
+                 text-decoration: none;
+             }
+         }
+     }
+
+     a {
+         background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+         border-bottom: 1px solid #dadada;
+         padding: 15px;
+         position: relative;
+         width: 100%;
+         float: left;
+         outline: none;
+         color: #000;
+         .m-prof {
+             display: inline-block;
+             float: none;
+             height: 35px;
+             margin-left: 0;
+             vertical-align: middle;
+             width: 45px;
+         }
+         .list-arrow {
+             float: right;
+             background: rgba(0, 0, 0, 0) url(/assets/images/icon-plus-snip.png) no-repeat scroll 0 0;
+             content: "";
+             height: 24px;
+             margin-top: -12px;
+             position: absolute;
+             right: 15px;
+             top: 50%;
+             width: 24px;
+         }
+         // home serices icon 
+         .f-pro1 { background: url(/assets/images/home-stripe.png) no-repeat; }
+         &:hover .f-pro1,
+         &:focus .f-pro1{ background: rgba(0, 0, 0, 0) url("/assets/images/home-stripe.png") no-repeat scroll 0px -44px;}
+         
+
+         .f-pro12 { background: rgba(0, 0, 0, 0) url("/assets/images/cycle-stripe.png") no-repeat scroll 0px -29px;}
+         &:hover .f-pro2,
+         &:focus .f-pro2{ background: url(/assets/images/cycle-stripe.png) no-repeat scroll 0px 2px; }
+             
+         
+         .f-pro11 { background: rgba(0, 0, 0, 0) url("/assets//images/medical-stripe.png") no-repeat scroll 0px -29px; }
+         &:hover .f-pro11,
+         &:focus .f-pro11{ background: url(/assets//images/medical-stripe.png) no-repeat scroll 0px 5px; }
+        
+         
+         .f-pro8  { background: rgba(0, 0, 0, 0) url("/assets//images/heavy-stripe.png") no-repeat scroll 0px -40px; }
+         &:hover .f-pro8,
+         &:focus .f-pro8{ background: url(/assets//images/heavy-stripe.png) no-repeat; }
+
+     }
+     a.active .f-pro1 { background: rgba(0, 0, 0, 0) url("/assets/images/home-stripe.png") no-repeat scroll 0px -44px;}  
+ } // li end 
+}

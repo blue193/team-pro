@@ -99,17 +99,17 @@
       <p class="common_p"> Our platform empowers you to find and choose the right service provider for your project
         either small or<br> complex. We want to make the process of repair, installation and services easy for you.</p>
     </div>
-    <div class="row" *ngFor="let categoryRow of categories">
+    <div class="row" *ngFor="let categoryRow of homeServicesSubCategory">
       <div class="col col{{i+1}} catgory_box" *ngFor="let category of categoryRow; let i = index;">
         <div class="category">
           <div class="cate_img"> <img [src]="category.thumb" class="img-fluid" alt="category_image">
           </div>
-          <div class="overlay"><a [routerLink]="['/category',category.id]"> {{category.title}} </a> </div>
+          <div class="overlay"><a [routerLink]="['/category',homeServicesCategory.slug, category.slug]"> {{category.title}} </a> </div>
         </div>
       </div>
     </div>
     <div class="text-center all_cete_btn">
-      <a [routerLink]="['/category','all']">See All Categories </a>
+      <a [routerLink]="['/category']">See All Categories </a>
     </div>
   </div>
 </div>

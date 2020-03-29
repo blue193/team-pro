@@ -1,19 +1,22 @@
+
 export interface Category {
   id: number;
   title: string;
   thumb: string;
   images: string[];
   slug: string;
-  description: string;
-  status: string;
-  postDate: string;
-  lastUpdated: string;
+  description?: string;
+  status?: string;
+  postDate?: string;
+  lastUpdated?: string;
+  subcategory?: any;
 }
 export type Categories = Array<Category>;
+
  
  
 
-export var categoriesMocData = [
+export var categoryHomeServicesData = [
   {
   "id": 1,
   "title": "Lawn & Garden",
@@ -179,6 +182,99 @@ export var categoriesMocData = [
   "postDate": "20-03-2019 10:10:11",
   "lastUpdated": "20-03-2019 10:10:11"
 }
-]
+]; 
 
+
+export var categoriesMockData = [
+  {
+    "id": 11,
+    "title": "Home Service",
+    "thumb": "http://s8.staging-host.com/xpbid/images/category_10.jpg",
+    "images": ["http://s8.staging-host.com/xpbid/images/home-electronic.jpg"],
+    "slug": "home_services",
+    "description": ``,
+    "subcategory": categoryHomeServicesData
+  },
+  {
+    "id": 12,
+    "title": "Motorcycle",
+    "thumb": "http://s8.staging-host.com/xpbid/images/category_10.jpg",
+    "images": ["http://s8.staging-host.com/xpbid/images/home-electronic.jpg"],
+    "slug": "motorcycle",
+    "description": ``,
+    "subcategory": ''
+  },
+  {
+    "id": 13,
+    "title": "Medical Equipment",
+    "thumb": "http://s8.staging-host.com/xpbid/images/category_10.jpg",
+    "images": ["http://s8.staging-host.com/xpbid/images/home-electronic.jpg"],
+    "slug": "medical_equipment",
+    "description": ``,
+    "subcategory": ''
+  },
+  {
+    "id": 14,
+    "title": "Heavy Equipment",
+    "thumb": "http://s8.staging-host.com/xpbid/images/category_10.jpg",
+    "images": ["http://s8.staging-host.com/xpbid/images/home-electronic.jpg"],
+    "slug": "heavy_equipment",
+    "description": ``,
+    "subcategory": ''
+  },
+  {
+    "id": 15,
+    "title": "Boats",
+    "thumb": "http://s8.staging-host.com/xpbid/images/category_10.jpg",
+    "images": ["http://s8.staging-host.com/xpbid/images/home-electronic.jpg"],
+    "slug": "boats",
+    "description": ``,
+    "subcategory": ''
+  },
+  {
+    "id": 16,
+    "title": "Metal Fabrication",
+    "thumb": "http://s8.staging-host.com/xpbid/images/category_10.jpg",
+    "images": ["http://s8.staging-host.com/xpbid/images/home-electronic.jpg"],
+    "slug": "metal_fabrication",
+    "description": ``,
+    "subcategory": ''
+  },
+  {
+    "id": 17,
+    "title": "Business Industrial",
+    "thumb": "http://s8.staging-host.com/xpbid/images/category_10.jpg",
+    "images": ["http://s8.staging-host.com/xpbid/images/home-electronic.jpg"],
+    "slug": "business_industrial",
+    "description": ``,
+    "subcategory": ''
+  },
+  {
+    "id": 18,
+    "title": "Semi-Truck/ RV",
+    "thumb": "http://s8.staging-host.com/xpbid/images/category_10.jpg",
+    "images": ["http://s8.staging-host.com/xpbid/images/home-electronic.jpg"],
+    "slug": "semi_truck_rv",
+    "description": ``,
+    "subcategory": ''
+  },
+  {
+    "id": 19,
+    "title": "Automotive",
+    "thumb": "http://s8.staging-host.com/xpbid/images/category_10.jpg",
+    "images": ["http://s8.staging-host.com/xpbid/images/home-electronic.jpg"],
+    "slug": "automotive",
+    "description": ``,
+    "subcategory": ''
+  },
+  {
+    "id": 20,
+    "title": "Arts Craft",
+    "thumb": "http://s8.staging-host.com/xpbid/images/category_10.jpg",
+    "images": ["http://s8.staging-host.com/xpbid/images/home-electronic.jpg"],
+    "slug": "arts_craft",
+    "description": ``,
+    "subcategory": ''
+  }
+];
 

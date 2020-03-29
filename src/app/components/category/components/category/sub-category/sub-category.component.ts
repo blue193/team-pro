@@ -10,8 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class SubCategoryComponent implements OnInit {
 
-  subCatId: number;
-  catData: Category;
+  subCategory: Category;
   
   constructor(
     private route: ActivatedRoute,
@@ -21,10 +20,8 @@ export class SubCategoryComponent implements OnInit {
   ngOnInit() {
 
     this.route.params.subscribe(params => {
-      console.log(' SubCategoryComponent catData ', params)
-      if (params.cat_id){
-        this.subCatId = parseInt( params.cat_id );
-        this.apiService.getCategory( this.subCatId ).subscribe(response =>  this.catData = response);
+      if (params.subcategory_slug){
+        this.apiService.getSubCategoryBySlug(params.subcategory_slug).subscribe(response =>  this.subCategory = response);
       }  
     });
 

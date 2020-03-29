@@ -5,20 +5,28 @@ import { CategoriesComponent } from './components/categories/categories.componen
 import { CategoryComponent } from './components/category/category.component';
 import { SubCategoryComponent } from './components/category/sub-category/sub-category.component';
 import { HeaderComponent } from './components/header/header.component';
+import { LeftSideNavComponent } from './components/left-side-nav/left-side-nav.component';
 
 const routes: Routes = [
-  { path: 'all', component: CategoriesComponent },
+  { path: '', component: CategoriesComponent },
   {
-    path: '',
+    path: ':category_slug',
     component: CategoryComponent,
     children: [
-      {path: ':cat_id', component: SubCategoryComponent},  
+      {path: '', component: SubCategoryComponent},  
+    ]
+  },
+  {
+    path: ':category_slug/:subcategory_slug',
+    component: CategoryComponent,
+    children: [ 
+      {path: '', component: SubCategoryComponent},  
     ]
   },
 ];
 
 @NgModule({
-  declarations: [CategoriesComponent, CategoryComponent, SubCategoryComponent, HeaderComponent],
+  declarations: [CategoriesComponent, CategoryComponent, SubCategoryComponent, HeaderComponent, LeftSideNavComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes)

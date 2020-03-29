@@ -1,0 +1,20 @@
+<h1>Service Categories</h1>
+<ul class="msg-list nav nav-stacked" id="chat-accordion">
+  <li class="panel" *ngFor="let category of categories">
+    <a data-toggle="collapse" class="collapsed" aria-expanded="false" (click)="toggleMenu(category.slug)">
+      <span class="f-pro1 m-prof"></span>
+      <span class="frinds-list">{{category.title}}</span>
+      <span class="list-arrow"></span>
+    </a>
+    <!-- Sub list -->
+    <ul *ngIf="category.subcategory"
+      id="Group{{category.id}}" 
+      class="sugstd-matchs-list collapse" 
+      [class.show]="expandedCategoryMenu.indexOf(category.slug) !== -1">
+      <li *ngFor="let subcategory of category.subcategory">
+        <a [routerLink]="['/category',category.slug,subcategory.slug]"  [class.active]="subcategory_slug === subcategory.slug" >{{subcategory.title}}</a>
+      </li>
+    </ul>
+    <!-- Sub list Ends -->
+  </li>
+</ul>

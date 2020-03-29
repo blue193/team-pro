@@ -1,9 +1,9 @@
-import { iMyEvent, eventList } from './../_models/event.model';
+import { eventList } from './../_models/event.model';
 import { User } from 'src/app/shared/_models/user.model';
 import { UserMockData } from './../_models/user.model';
-import { Category, categoriesMocData } from './../_models/category.model';
+import { Category, categoriesMockData, Categories, categoryHomeServicesData } from './../_models/category.model';
 import { Injectable } from '@angular/core';
-import { of, Subscription, Observable, BehaviorSubject } from 'rxjs';
+import { of, BehaviorSubject } from 'rxjs';
 import { timer } from 'rxjs';
 import { delay } from "rxjs/operators";
 import { Service, servicesData } from '../_models/service.model';
@@ -21,25 +21,19 @@ export class ApiService {
   constructor() { }
 
   // Get list of catgories from api backend. 
-  getAllCategories(chunk: boolean) {
-    let categoryList: Category[] = categoriesMocData;
-    if (chunk) {
-      // slice the list of categories in a gorup of five category. 
-      let categoryListRows = []
-      for (let i = 0; i < categoryList.length; i += 5) {
-        let chunk = categoryList.slice(i, i + 5)
-        categoryListRows.push(chunk)
-      }
-      return of(categoryListRows);
-    } else {
-      return of(categoryList);
-    }
-
+  getAllCategories() {
+    let categoryList: Categories = categoriesMockData; 
+    return of(categoryList);
   }
 
   getCategory(catid: number) {
-    let categoryList: Category[] = categoriesMocData;
+    let categoryList: Category[] = categoriesMockData;
     return of(categoryList.find(x => x.id === catid));
+  }
+
+  getSubCategoryBySlug(categorySlug: string) {
+    let categoryList: Category[] = categoryHomeServicesData;
+    return of(categoryList.find(x => x.slug === categorySlug));
   }
 
   getTrendingProjects() {
