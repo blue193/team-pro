@@ -1,3 +1,4 @@
+import { AddEventDialogboxComponent } from './../add-event-dialogbox/add-event-dialogbox.component';
 import { iMyEvent, iEventColors } from './../../../../shared/_models/event.model';
 import { CalendarDialogboxComponent } from './../calendar-dialogbox/calendar-dialogbox.component';
 import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
@@ -7,16 +8,24 @@ import {
   CalendarEvent,
   CalendarEventAction,
   CalendarEventTimesChangedEvent,
-  CalendarView
+  CalendarView,
+  CalendarDateFormatter
 } from 'angular-calendar';
-import { ApiService } from 'src/app/shared/_services/api.service'; 
+import { CustomDateFormatter } from './provider/custom-date-formatter.provider';
+import { ApiService } from 'src/app/shared/_services/api.service';
 import { User } from 'src/app/shared/_models/user.model';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'xb-calendar',
   templateUrl: './calendar.component.html',
-  styleUrls: ['./calendar.component.scss'] 
+  styleUrls: ['./calendar.component.scss'],
+  providers: [
+    {
+      provide: CalendarDateFormatter,
+      useClass: CustomDateFormatter
+    }
+  ]
 })
 
 export class CalendarComponent implements OnInit {
@@ -30,95 +39,103 @@ export class CalendarComponent implements OnInit {
     event: CalendarEvent;
   };
   refresh: Subject<any> = new Subject();
-  events: iMyEvent[]  = [];
-  activeDayIsOpen: boolean = true;
-
+  allEventList: iMyEvent[] = [];
+  todayEvents: iMyEvent[] = [];
+  activeDayIsOpen: boolean = false;
   users: User[];
+  viewAll: boolean = true; 
+
   constructor(
     public dialog: MatDialog,
-    private apiService: ApiService, 
+    private apiService: ApiService,
   ) { }
 
   ngOnInit() {
-    this.apiService.getAllCalendarEvents().subscribe(response => this.events = response);
+    this.apiService.getAllCalendarEvents().subscribe(response => {
+      this.allEventList = response; 
+      this.todayEvents = response;
+    });
     this.apiService.getAllUsers().subscribe(response => this.users = response);
   }
 
+  // when click on calendar date cell, show this date and its events on left side view.  
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
-    console.log(' dayClicked ');
-    if (isSameMonth(date, this.viewDate)) {
-      if (
-        (isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) ||
-        events.length === 0
-      ) {
-        this.activeDayIsOpen = false;
-      } else {
-        this.activeDayIsOpen = true;
-      }
-      this.viewDate = date;
-    }
+    this.todayEvents = events;
+    this.viewDate = date;
   }
 
-  eventTimesChanged({
-    event,
-    newStart,
-    newEnd
-  }: CalendarEventTimesChangedEvent): void {
-    this.events = this.events.map(iEvent => {
-      if (iEvent === event) {
-        return {
-          ...event,
-          start: newStart,
-          end: newEnd
-        };
-      }
-      return iEvent;
-    });
-    this.handleEvent('Dropped or resized', event);
-  }
+  // eventTimesChanged({
+  //   event,
+  //   newStart,
+  //   newEnd
+  // }: CalendarEventTimesChangedEvent): void {
+  //   this.events = this.events.map(iEvent => {
+  //     if (iEvent === event) {
+  //       return {
+  //         ...event,
+  //         start: newStart,
+  //         end: newEnd
+  //       };
+  //     }
+  //     return iEvent;
+  //   });
+  //   this.handleEvent('Dropped or resized', event);
+  // }
 
+  // click on any event triggered a popup which show information of event, and allowed update on event detail. 
   handleEvent(action: string, event: CalendarEvent): void {
-    console.log("clicked", event);
     this.modalData = { event };
-    console.log("data", this.modalData.event.title);
-    this.dialog.open(CalendarDialogboxComponent, {data: event});
+    this.dialog.open(CalendarDialogboxComponent, { data: event });
   }
 
-  addEvent(): void {
-    this.events = [
-      ...this.events,
-      {
-        title: 'New event',
-        description: 'Description of New event',
-        start: startOfDay(new Date()),
-        end: endOfDay(new Date()),
-        color: iEventColors.meeting,
-        draggable: true,
-        resizable: {
-          beforeStart: true,
-          afterEnd: true
-        }
-      }
-    ];
-  }
+  // addEvent(): void {
+  //   this.events = [
+  //     ...this.events,
+  //     {
+  //       title: 'New event',
+  //       description: 'Description of New event',
+  //       start: startOfDay(new Date()),
+  //       end: endOfDay(new Date()),
+  //       color: iEventColors.meeting,
+  //       draggable: true,
+  //       resizable: {
+  //         beforeStart: true,
+  //         afterEnd: true
+  //       }
+  //     }
+  //   ];
+  // }
 
+  
   deleteEvent(eventToDelete: CalendarEvent) {
-    this.events = this.events.filter(event => event !== eventToDelete);
+    //console.log(' deleteEvent');
+    // this.events = this.events.filter(event => event !== eventToDelete);
   }
 
+  // chagne the view of calendar(Month, Week, Day)
   setView(view: CalendarView) {
     this.view = view;
   }
 
-  closeOpenMonthViewDay() {
-    this.activeDayIsOpen = false;
-  }
-
   editEvent(event, option) {
-    console.log('editEvent', event);
-    console.log('option', option);
     this.apiService.editEvent(event);
   }
 
+  // show dialog box to add new events. 
+  addNewEventClick(){
+    this.dialog.open(AddEventDialogboxComponent);
+  }
+
+  // showng all Events on left side. 
+  viewAllClick(){
+    this.todayEvents = this.allEventList;
+    this.viewAll = true; 
+  }
+
+  // only show today event on left side. 
+  viewToday(){
+    this.todayEvents = this.allEventList.filter(iEvent =>  iEvent.start.toDateString() == new Date().toDateString());
+    this.viewAll = false; 
+  }
 
 }

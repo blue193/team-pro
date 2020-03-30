@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://78d565.online-server.cloud/xpbapi/api/v1'
+  // apiUrl: 'http://78d565.online-server.cloud/xpbapi/api/v1'
+  apiUrl: 'http://demo.anisinfotech.com'
 };
 
 // "username": "Test.Provider01@XpBids.com",

@@ -7,8 +7,6 @@ import { startOfDay, endOfDay, subDays, addDays, endOfMonth, isSameDay, isSameMo
 export interface iMyEvent extends CalendarEvent {
  description?: string;
 }
-
-
 export var iEventColors: any = {
  meeting: {
    primary: '#ad2121',
@@ -23,35 +21,32 @@ export var iEventColors: any = {
    secondary: '#FDF1BA'
  }
 };
-
-
-export var iEventAction: CalendarEventAction[] = [
- {
-   label: '<i class="fa fa-fw fa-pencil"></i>',
-   a11yLabel: 'Edit',
-   onClick: ({ event }: { event: CalendarEvent }): void => {
-     this.handleEvent('Edited', event);
-   }
- },
- {
-   label: '<i class="fa fa-fw fa-times"></i>',
-   a11yLabel: 'Delete',
-   onClick: ({ event }: { event: CalendarEvent }): void => {
-     // this.events = this.events.filter(iEvent => iEvent !== event);
-     this.handleEvent('Deleted', event);
-   }
- }
-];
-
+// export var iEventAction: CalendarEventAction[] = [
+//  {
+//    label: '<i class="fa fa-fw fa-pencil"></i>',
+//    a11yLabel: 'Edit',
+//    onClick: ({ event }: { event: CalendarEvent }): void => {
+//      this.handleEvent('Edited', event);
+//    }
+//  },
+//  {
+//    label: '<i class="fa fa-fw fa-times"></i>',
+//    a11yLabel: 'Delete',
+//    onClick: ({ event }: { event: CalendarEvent }): void => {
+//      // this.events = this.events.filter(iEvent => iEvent !== event);
+//      this.handleEvent('Deleted', event);
+//    }
+//  }
+// ];
 export var eventList: iMyEvent[] = [
  {
    id: 1,
-   start: subDays(startOfDay(new Date()), 1),
-   end: addDays(new Date(), 1),
+   start: subDays(startOfDay(new Date()), 3),
+   end: subDays(startOfDay(new Date()), 1),
    title: 'A 3 day event',
    description: 'Test description of A 3 day event',
    color: iEventColors.meeting,
-   actions: iEventAction,
+  //  actions: iEventAction,
    allDay: true,
    resizable: {
      beforeStart: true,
@@ -81,7 +76,7 @@ export var eventList: iMyEvent[] = [
    title: 'A draggable and resizable event',
    description: 'Test description of A draggable and resizable event',
    color: iEventColors.work,
-   actions: iEventAction,
+  //  actions: iEventAction,
    resizable: {
      beforeStart: true,
      afterEnd: true

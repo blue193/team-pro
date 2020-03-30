@@ -1,15 +1,18 @@
+
 import { AppComponent } from './app.component';
 import { RouterModule, PreloadAllModules } from '@angular/router';
 import {
   MatDialogModule,
   MatFormFieldModule,
-  MatInputModule
+  MatInputModule,
+  MatDatepickerModule,
+  MatNativeDateModule
 } from '@angular/material';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CookieModule } from 'ngx-cookie';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './core/core.module'; 
 
@@ -28,11 +31,12 @@ import { LandingComponent } from './components/landing/landing.component';
 import { ServiceDialogBoxComponent } from './components/landing/servicedialogbox/servicedialogbox.component';
 import { VideoDialogboxComponent } from './core/video/video-dialogbox/video-dialogbox.component';
 import { VideosComponent } from './components/videos/videos.component';
+import { CalendarDialogboxComponent } from './components/calendar-page/components/calendar-dialogbox/calendar-dialogbox.component'; 
+import { AddEventDialogboxComponent } from './components/calendar-page/components/add-event-dialogbox/add-event-dialogbox.component';
  
 // pipes
 import { TruncatePipe } from './shared/_pipes/str-limit.pipe';
 import { AsFormArrayPipe } from './shared/_pipes/form-array.pipe';
-import { CalendarDialogboxComponent } from './components/calendar-page/components/calendar-dialogbox/calendar-dialogbox.component'; 
 
 @NgModule({
   imports: [
@@ -45,7 +49,9 @@ import { CalendarDialogboxComponent } from './components/calendar-page/component
     HttpModule,
     MatDialogModule,
     MatFormFieldModule,
-    MatInputModule,
+    MatInputModule, 
+    MatDatepickerModule,
+    MatNativeDateModule,
     ReactiveFormsModule,
     OwlModule,
     RouterModule.forRoot(appRoutes, { preloadingStrategy: PreloadAllModules, scrollPositionRestoration: 'enabled' }),
@@ -55,7 +61,8 @@ import { CalendarDialogboxComponent } from './components/calendar-page/component
   entryComponents: [
     ServiceDialogBoxComponent,
     VideoDialogboxComponent,
-    CalendarDialogboxComponent
+    CalendarDialogboxComponent,
+    AddEventDialogboxComponent
   ],
   declarations: [
     AppComponent, 
@@ -64,9 +71,10 @@ import { CalendarDialogboxComponent } from './components/calendar-page/component
     VideosComponent, 
     TruncatePipe,
     AsFormArrayPipe,
-    CalendarDialogboxComponent
+    CalendarDialogboxComponent,
+    AddEventDialogboxComponent
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 

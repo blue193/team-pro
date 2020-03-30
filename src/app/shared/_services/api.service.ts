@@ -1,3 +1,5 @@
+import { environment } from './../../../environments/environment';
+import { IResponse } from './../_models/response.model';
 import { eventList } from './../_models/event.model';
 import { User } from 'src/app/shared/_models/user.model';
 import { UserMockData } from './../_models/user.model';
@@ -5,10 +7,11 @@ import { Category, categoriesMockData, Categories, categoryHomeServicesData } fr
 import { Injectable } from '@angular/core';
 import { of, BehaviorSubject } from 'rxjs';
 import { timer } from 'rxjs';
-import { delay } from "rxjs/operators";
+import { delay, tap } from "rxjs/operators";
 import { Service, servicesData } from '../_models/service.model';
 import { Item, itemsData } from '../_models/item.model';
 import { categoryData, CategoryMockData } from '../_models/category-data.model';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +21,7 @@ export class ApiService {
   public projectCounterBS: BehaviorSubject<{ newpost: number, inprogress: number, complete: number }> = new BehaviorSubject<{ newpost: number, inprogress: number, complete: number }>({ newpost: 0, inprogress: 0, complete: 0 });
   private projectCounter_init = false;
 
-  constructor() { }
+  constructor(private _http: HttpClient) { }
 
   // Get list of catgories from api backend. 
   getAllCategories() {
@@ -88,6 +91,21 @@ export class ApiService {
   // function to get all calendar event from api. 
   getAllCalendarEvents() {
     return of(eventList);
+  }
+
+  getEventCategoryList() {
+      return this._http.get<IResponse<any>>(`${environment.apiUrl}/CalendarEvents/GetCategoryList`)
+          .pipe(
+              tap((response) => { if (response.status !== 200) { console.warn(`getEventCategoryList()) failed!`); } })
+          );
+  }
+
+  addEvent(eventdata) {
+    console.log('eventdata', eventdata);
+    return this._http.post<IResponse<any>>(`${environment.apiUrl}/CalendarEvents/AddEvent`, eventdata)
+    .pipe(
+        tap((response) => { if (response.status !== 200) { console.warn(`addEvent()) failed!`); } })
+    );
   }
 
 }
