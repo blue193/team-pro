@@ -5,7 +5,7 @@ export interface iVideo {
   url: string;
   description: string;
 }
-export var VideoMockData = [
+export let VideoMockData = [
   {
     "id": 1,
     "title": "How to track my project?",

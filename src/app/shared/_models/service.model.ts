@@ -6,7 +6,7 @@ export class Service {
 }
 
 
-export var servicesData = [
+export let servicesData = [
   {
     'image': 'http://s8.staging-host.com/xpbid/images/profile1.jpg',
     'name': 'John Lennon',

@@ -16,7 +16,7 @@ export type Categories = Array<Category>;
  
  
 
-export var categoryHomeServicesData = [
+export let categoryHomeServicesData = [
   {
   "id": 1,
   "title": "Lawn & Garden",

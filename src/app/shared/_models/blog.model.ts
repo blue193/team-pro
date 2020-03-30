@@ -5,7 +5,7 @@ export class iBlog {
   url: string;
   description: string;
 }
-export var BlogMockData = [
+export let BlogMockData = [
   {
     "id": 1,
     "title": "How to post your gadget",

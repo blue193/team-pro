@@ -4,7 +4,7 @@ export class Item {
   location: string;
 }
 
-export var itemsData = [
+export let itemsData = [
   {
     'content': `This is Photoshop\'s version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean
     sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum.`,

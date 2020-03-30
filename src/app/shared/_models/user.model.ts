@@ -3,7 +3,7 @@ export class User {
  username: string;
 }
 
-export var UserMockData = [
+export let UserMockData = [
  {
    "id": 1,
    "username": "creative"

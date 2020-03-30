@@ -3,7 +3,7 @@ export interface categoryData {
   images: string[];
   description: string;
 }
-export var CategoryMockData =
+export let CategoryMockData =
 {
   'title': 'Home Service',
   'images': [
