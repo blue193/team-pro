@@ -1,0 +1,55 @@
+
+<div class="title">
+  <h4  class="text-center">Add new event</h4>
+</div>
+
+<div class="addEventForm pt-2">
+  
+  <div class="formInput">
+    <mat-form-field class="example-full-width">
+      <mat-label>Event Subject</mat-label>
+      <input matInput placeholder="Event Subject" [(ngModel)]="eventSubject" >
+    </mat-form-field>
+  </div>
+
+  <div class="formInput">
+    <mat-form-field>
+      <mat-label>Category</mat-label>
+      <mat-select [(ngModel)]="eventCategory">
+        <mat-option *ngFor="let eventCategory of eventCategoryList" [value]="eventCategory.Cat_Id">{{eventCategory.Title}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="formInput">
+    <mat-form-field appearance="fill">
+      <mat-label>Details</mat-label>
+      <textarea matInput [(ngModel)]="eventDetail"></textarea>
+    </mat-form-field>
+  </div>
+  <!-- eventCategory =   {{eventCategory | json }} -->
+
+  <div class="formInput">
+    <mat-form-field appearance="fill">
+      <mat-label>Start Date</mat-label>
+      <input matInput [matDatepicker]="start_picker"  [(ngModel)]="eventStartDate">
+      <mat-datepicker-toggle matSuffix [for]="start_picker"></mat-datepicker-toggle>
+      <mat-datepicker #start_picker></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+  <div class="formInput">
+    <mat-form-field appearance="fill">
+      <mat-label>End Date</mat-label>
+      <input matInput [matDatepicker]="end_picker" [(ngModel)]="eventEndDate">
+      <mat-datepicker-toggle matSuffix [for]="end_picker"></mat-datepicker-toggle>
+      <mat-datepicker #end_picker></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+  <div class="event_action text-center">
+    <button class="btn btn-primary mt-3" (click)="addEventBtnClick()">Add Event</button>
+  </div>
+
+</div>
+
