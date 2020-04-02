@@ -1,6 +1,6 @@
 import { environment } from './../../../environments/environment';
 import { IResponse } from './../_models/response.model';
-import { eventList } from './../_models/event.model';
+import {  iCalendarEvent, cCalendarEvent } from './../_models/event.model';
 import { User } from 'src/app/shared/_models/user.model';
 import { UserMockData } from './../_models/user.model';
 import { Category, categoriesMockData, Categories, categoryHomeServicesData } from './../_models/category.model';
@@ -8,7 +8,7 @@ import { Injectable } from '@angular/core';
 import { of, BehaviorSubject } from 'rxjs';
 import { timer } from 'rxjs';
 import { delay, tap } from "rxjs/operators";
-import { Service, servicesData } from '../_models/service.model';
+import { iService, servicesData } from '../_models/service.model';
 import { Item, itemsData } from '../_models/item.model';
 import { categoryData, CategoryMockData } from '../_models/category-data.model';
 import { HttpClient } from '@angular/common/http';
@@ -60,9 +60,14 @@ export class ApiService {
   }
 
   getAllServices() {
-    var services: Service[] = servicesData;
+    var services: iService[] = servicesData;
     console.log(' services ', services);
     return of(services);
+   
+    // return this._http.get<any>(`http://78d565.online-server.cloud/xpbapi/api/v1/showcase/providers`)
+    // .pipe(
+    //     tap((response) => { if (response.status !== 200) { console.warn(`getAllServices()) failed!`); } })
+    // );
   }
 
   getAllItems() {
@@ -83,14 +88,34 @@ export class ApiService {
   }
 
   // function to update the event status 
-  // return updated eventData, and progress status 
-  updateEventStatus(eventData, eventStatus) {
-    return of(true).pipe(delay(1000));
+  updateEventStatus(eventID, eventStatus) {
+    // return of(true).pipe(delay(1000));
+    let postData =  {'ParaEventId': eventID, 'paraIsAccepted': (eventStatus == 'accept')?1:0}
+    return this._http.post<IResponse<any>>(`${environment.apiUrl}/CalendarEvents/SetIsAccepted`, postData)
+    .pipe(
+        tap((response) => { if (response.status !== 200) { console.warn(`DeleteEvent()) failed!`); } })
+    );
   }
 
   // function to get all calendar event from api. 
-  getAllCalendarEvents() {
-    return of(eventList);
+  getAllCalendarEvents(range) {
+    // return of(eventList);
+    // let eventFilter = { 'ParaFromDate': '03/01/2020', 'ParaToDate': '05/25/2020' }; 
+    return this._http.post<IResponse<any>>(`${environment.apiUrl}/CalendarEvents/GetEventList`, range)
+    .pipe(
+        tap((response) => { 
+          console.log(' resposne  ', response);
+          if (response.status !== 200) { 
+              console.warn(`getAllCalendarEvents()) failed!`); 
+          } 
+          
+          // else if (response.data.length > 0) {
+          //   let details = response.data.map(data => new cCalendarEvent(data));
+          //   console.log(' map details  ', details);
+          //   return details;
+          // }
+        }
+    ));
   }
 
   getEventCategoryList() {
@@ -105,6 +130,14 @@ export class ApiService {
     return this._http.post<IResponse<any>>(`${environment.apiUrl}/CalendarEvents/AddEvent`, eventdata)
     .pipe(
         tap((response) => { if (response.status !== 200) { console.warn(`addEvent()) failed!`); } })
+    );
+  }
+
+  deleteEvent(eventID) {
+    console.log('deleteEvent eventID', eventID);
+    return this._http.post<IResponse<any>>(`${environment.apiUrl}/CalendarEvents/DeleteEvent`, {'ParaEventId': eventID})
+    .pipe(
+        tap((response) => { if (response.status !== 200) { console.warn(`DeleteEvent()) failed!`); } })
     );
   }
 

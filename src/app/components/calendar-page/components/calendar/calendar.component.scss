@@ -64,11 +64,15 @@ button:focus {
   }
 }
 .calander_sec .calander_content .calander_left .appointment_tbl {
-  position: absolute;
+  max-height: 400px;
+  overflow-y: scroll;
+  position: relative;
   bottom: 0;
   left: 0;
   width: 100%;
   padding: 30px 30px 15px;
+ 
+  overflow-y: scroll;
 }
 @media (max-width: 1110px) {
   .calander_sec .calander_content .calander_left .appointment_tbl {
@@ -472,6 +476,7 @@ table.fc-header{
     .cal-cell-top, .cal-day-cell {
       min-height: 60px;
       border: 0px;
+      position: relative;
     }
    .cal-day-cell.cal-weekend .cal-day-number {
       opacity: 0.5 !important;
@@ -493,25 +498,25 @@ table.fc-header{
             }
           }
           .cal-cell-top {
-            > span {
-               // border: 1px solid black;
-               display: inline-block;
-               display: block;
-               width: 100%;
-               height: 100%;
-               display: inline-block;
-             }
-             .cal-day-badge {
-               background-color: #b94a48;
-               color: #fff;
-               margin-top: 2px;
-               margin-left: 2px;
-               display: inline-block;
-               position: absolute;
-               font-size: 10px;
-               padding: 2px 5px;
-               font-weight: normal;
-             }
+            // > span {
+            //    // border: 1px solid black;
+            //    display: inline-block;
+            //    display: block;
+            //    width: 100%;
+            //    height: 100%;
+            //    display: inline-block;
+            //  }
+            //  .cal-day-badge {
+            //    background-color: #b94a48;
+            //    color: #fff;
+            //    margin-top: 2px;
+            //    margin-left: 2px;
+            //    display: inline-block;
+            //    position: absolute;
+            //    font-size: 10px;
+            //    padding: 2px 5px;
+            //    font-weight: normal;
+            //  }
              .cal-day-number{
               font-size: 15px;
               width: 30px;
@@ -523,12 +528,20 @@ table.fc-header{
               display: block;
               opacity: 1;
             }
+
+            .cal_event_title {
+              line-height: 14px;
+              font-size: 11px;
+              margin: 2px 0px;
+          }
+          
            }
         }
        .cal-has-events{
         .cal-cell-to{ height: 50px; }
        }
        .cal-today{
+         background: none;
         .cal-day-number{
           background-color: #ff5312;
           color: #FFFFFF;
@@ -543,3 +556,27 @@ table.fc-header{
   }
 }
  
+
+
+
+
+ 
+.appointment_tbl::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 4px;
+	background-color: #f5f5f5;
+}
+
+.appointment_tbl::-webkit-scrollbar
+{
+	width: 4px;
+	background-color: #E91E63;
+}
+
+.appointment_tbl::-webkit-scrollbar-thumb
+{
+	border-radius: 4px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #ff5312;
+}
