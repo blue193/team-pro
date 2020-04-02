@@ -46,11 +46,12 @@
       <div *ngFor="let service of servicesData;let i = index">
         <div class="profile_sec">
           <div class="profile_1">
-            <img [src]="service.image" alt="profile">
+            <img [src]="'data:image/png;base64,'+service.image.data" alt="profile">
           </div>
           <div class="des">
-            <h3>{{service.name}} <br> <span>{{service.job}} </span></h3>
-            <p class="common_p">{{service.comment}}</p>
+              <h3>{{service.firstName}} {{service.lastName}} <br>
+                <span>{{service.companyName}} </span></h3>
+            <p class="common_p">{{service.description | limitTo:110 }}</p>
             <a (click)="openDetailDialogBox(service)" class="cursor"> Read More </a>
           </div>
         </div>

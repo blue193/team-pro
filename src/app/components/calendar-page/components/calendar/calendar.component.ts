@@ -1,20 +1,23 @@
+import { DatePipe } from '@angular/common';
 import { AddEventDialogboxComponent } from './../add-event-dialogbox/add-event-dialogbox.component';
-import { iMyEvent, iEventColors } from './../../../../shared/_models/event.model';
+import { iMyEvent,  iCalendarEvent, cCalendarEvent } from './../../../../shared/_models/event.model';
 import { CalendarDialogboxComponent } from './../calendar-dialogbox/calendar-dialogbox.component';
 import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
-import { startOfDay, endOfDay, subDays, addDays, endOfMonth, isSameDay, isSameMonth, addHours } from 'date-fns';
+import { startOfDay, endOfDay, subDays, addDays, endOfMonth, isSameDay, isSameMonth, addHours, startOfMonth, startOfWeek } from 'date-fns';
 import { Subject } from 'rxjs';
 import {
   CalendarEvent,
   CalendarEventAction,
   CalendarEventTimesChangedEvent,
   CalendarView,
-  CalendarDateFormatter
+  CalendarDateFormatter,
+  CalendarMonthViewDay
 } from 'angular-calendar';
 import { CustomDateFormatter } from './provider/custom-date-formatter.provider';
 import { ApiService } from 'src/app/shared/_services/api.service';
 import { User } from 'src/app/shared/_models/user.model';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { endOfWeek } from 'date-fns/esm';
 
 @Component({
   selector: 'xb-calendar',
@@ -39,8 +42,14 @@ export class CalendarComponent implements OnInit {
     event: CalendarEvent;
   };
   refresh: Subject<any> = new Subject();
-  allEventList: iMyEvent[] = [];
-  todayEvents: iMyEvent[] = [];
+  
+  // allEventList: iCalendarEvent[] = [];
+  // todayEvents: iCalendarEvent[] = [];
+  
+  allEventList: cCalendarEvent[] = [];
+  todayEvents: CalendarEvent[] = [];
+
+
   activeDayIsOpen: boolean = false;
   users: User[];
   viewAll: boolean = true; 
@@ -48,18 +57,16 @@ export class CalendarComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     private apiService: ApiService,
+    private datePipe: DatePipe
   ) { }
 
   ngOnInit() {
-    this.apiService.getAllCalendarEvents().subscribe(response => {
-      this.allEventList = response; 
-      this.todayEvents = response;
-    });
+    this.getAllEvents();
     this.apiService.getAllUsers().subscribe(response => this.users = response);
   }
 
   // when click on calendar date cell, show this date and its events on left side view.  
-  dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
+  dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {    
     this.todayEvents = events;
     this.viewDate = date;
   }
@@ -85,7 +92,9 @@ export class CalendarComponent implements OnInit {
   // click on any event triggered a popup which show information of event, and allowed update on event detail. 
   handleEvent(action: string, event: CalendarEvent): void {
     this.modalData = { event };
-    this.dialog.open(CalendarDialogboxComponent, { data: event });
+    this.dialog.open(CalendarDialogboxComponent, { data: event }).afterClosed().subscribe(result =>   {
+      if (result){ this.getAllEvents(); }
+    });
   }
 
   // addEvent(): void {
@@ -106,6 +115,17 @@ export class CalendarComponent implements OnInit {
   //   ];
   // }
 
+  getAllEvents(){
+    let dateRange = this.getDateRange();
+    this.apiService.getAllCalendarEvents(dateRange).subscribe(response => {
+      let eventList: cCalendarEvent[] = [];
+      if (response.data.length > 0) {
+        eventList = response.data.map(data => new cCalendarEvent(data));
+      }
+      this.allEventList = eventList; 
+      this.todayEvents = eventList;
+    });
+  }
   
   deleteEvent(eventToDelete: CalendarEvent) {
     //console.log(' deleteEvent');
@@ -115,6 +135,7 @@ export class CalendarComponent implements OnInit {
   // chagne the view of calendar(Month, Week, Day)
   setView(view: CalendarView) {
     this.view = view;
+    this.getAllEvents();
   }
 
   editEvent(event, option) {
@@ -123,7 +144,9 @@ export class CalendarComponent implements OnInit {
 
   // show dialog box to add new events. 
   addNewEventClick(){
-    this.dialog.open(AddEventDialogboxComponent);
+    this.dialog.open(AddEventDialogboxComponent).afterClosed().subscribe(result =>   {
+      if (result){ this.getAllEvents(); }
+    });
   }
 
   // showng all Events on left side. 
@@ -134,8 +157,35 @@ export class CalendarComponent implements OnInit {
 
   // only show today event on left side. 
   viewToday(){
-    this.todayEvents = this.allEventList.filter(iEvent =>  iEvent.start.toDateString() == new Date().toDateString());
+    // this.todayEvents = this.allEventList.filter(iEvent =>  iEvent.start.toDateString() == new Date().toDateString());
     this.viewAll = false; 
   }
 
+
+ 
+
+  getDateRange(){
+    
+    let startRange = new Date();
+    let endRange = new Date();
+
+    if (this.view == 'month'){
+      startRange = startOfMonth(this.viewDate);
+      endRange = endOfMonth(this.viewDate);  
+    }else if( this.view == 'week'){
+      startRange = startOfWeek(this.viewDate);
+      endRange = endOfWeek(this.viewDate);
+    }else{
+      startRange = startOfDay(this.viewDate);  
+      endRange = endOfDay(this.viewDate);
+    }
+
+    return {
+      'ParaFromDate':  this.datePipe.transform(startRange, 'MM/dd/yyyy'),
+      'ParaToDate':  this.datePipe.transform( endRange, 'MM/dd/yyyy'),
+    }
+   
+  }
+
+  
 }

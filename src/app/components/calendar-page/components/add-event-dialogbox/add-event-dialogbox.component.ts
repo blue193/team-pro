@@ -1,3 +1,4 @@
+import { MatDialogRef } from '@angular/material/dialog';
 import { IResponse } from './../../../../shared/_models/response.model';
 import { ApiService } from 'src/app/shared/_services/api.service';
 import { Component, OnInit } from '@angular/core';
@@ -15,25 +16,50 @@ export class AddEventDialogboxComponent implements OnInit {
   eventCategory: number; 
   eventDetail: string; 
   eventStartDate: Date; 
-  eventEndDate: string; 
+  eventStartHours: number; 
+  eventStartMinutes: number; 
+  eventStartSeconds: number; 
 
-  constructor(private apiService: ApiService, private datePipe: DatePipe) { }
+  eventEndDate: Date; 
+  eventEndHours: number; 
+  eventEndMinutes: number; 
+  eventEndSeconds: number; 
+
+  eventProcessing: boolean = false; 
+
+  apiMessage: string; 
+  
+
+  constructor(
+    public dialogRef: MatDialogRef<AddEventDialogboxComponent>,
+    private apiService: ApiService, private datePipe: DatePipe) { }
 
   ngOnInit() {
     this.apiService.getEventCategoryList().subscribe(response => this.eventCategoryList = response.data);
   }
 
   addEventBtnClick() {
+    // console.log(' addEventBtnClick eventStartDate ', this.eventStartDate);
+    const startDate = this.eventStartDate.toDateString() +' '+ this.eventStartHours+':'+this.eventStartMinutes+':'+this.eventStartSeconds;
+    const endDate = this.eventEndDate.toDateString() +' '+ this.eventEndHours+':'+this.eventEndMinutes+':'+this.eventEndSeconds;
     let newEventData = {
       'ParaCategoryId': this.eventCategory,
       'ParaSubject': this.eventSubject,
       'ParaDetails': this.eventDetail,
-      'ParaEventStartDate': this.datePipe.transform(this.eventStartDate, 'dd/MM/yyyy HH:mm:ss'),
-      'ParaEventEndDate': this.datePipe.transform(this.eventEndDate, 'dd/MM/yyyy HH:mm:ss'),
+      'ParaEventStartDate': this.datePipe.transform(startDate, 'MM/dd/yyyy HH:mm:ss'),
+      'ParaEventEndDate': this.datePipe.transform(endDate, 'MM/dd/yyyy HH:mm:ss'),
       'ParaConsumerId': '1',
     }
+    this.eventProcessing = true; 
     this.apiService.addEvent(newEventData).subscribe((response) => {
       console.log('addEvent  response ', response);
+      this.eventProcessing = false; 
+      if(response.status == 200 && response.message == 'Success'){
+        this.apiMessage = 'Event Succesfully Added.';
+        setTimeout(()=>{  this.dialogRef.close(true); }, 2000);
+      }else{
+        this.apiMessage = response.message;
+      }
     });
   }
 

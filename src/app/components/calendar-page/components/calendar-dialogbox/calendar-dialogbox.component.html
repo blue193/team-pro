@@ -1,29 +1,30 @@
-  <div *ngIf="eventData">
-    <div class="event_title">
-      <h4  class="text-center">{{eventData.title}}</h4>
+ 
+    <div *ngIf="event">
+      <div class="event_title">
+        <h4  class="text-center">{{event.title}}</h4>
+      </div>
+      <div class="event_info pt-2">
+        <p>Description: {{event.description}}</p>
+        <p>Start: {{event.start | date: 'dd-MM-yyyy'}}</p>
+        <p *ngIf="event.end">End: {{event.end | date: 'dd-MM-yyyy'}}</p>
+        <mat-form-field>
+          <mat-label>Status:</mat-label>
+          <mat-select #selectedOption>
+            <mat-option  value="">Status</mat-option>
+            <mat-option  value="accept">Accept</mat-option>
+            <mat-option  value="cancel">Cancel</mat-option>
+            <mat-option  value="complete">Complete</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="event_action text-center">
+        <button class="btn btn-primary mt-3 m-1" (click)="updateEvent(event, selectedOption)">Update</button>
+        <button class="btn btn-primary mt-3 m-1" (click)="deleteEvent(event)">Remove
+          <span *ngIf="deletingEvent" class="sm_spinner"><mat-spinner></mat-spinner></span>
+        </button>
+      </div>
     </div>
-
-    <div class="event_info pt-2">
-     
-      <p>Description: {{eventData.description}}</p>
-      <p>Start: {{eventData.start | date: 'dd-MM-yyyy'}}</p>
-      <p *ngIf="eventData.end">End: {{eventData.end | date: 'dd-MM-yyyy'}}</p>
-      <mat-form-field>
-        <mat-label>Status:</mat-label>
-        <mat-select #selectedOption>
-          <mat-option  value="">Status</mat-option>
-          <mat-option  value="accept">Accept</mat-option>
-          <mat-option  value="cancel">Cancel</mat-option>
-          <mat-option  value="complete">Complete</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-    
-    <div class="event_action text-center">
-      <button class="btn btn-primary mt-3" (click)="updateEvent(eventData, selectedOption)">Update</button>
-    </div>
-    <p class="text-center mt-2" *ngIf="successUpdated">Event Succesfully updated</p>
-
-  </div>
+    <p class="text-center mt-2" *ngIf="apiMessage">{{apiMessage}}</p> 
+ 
   
  

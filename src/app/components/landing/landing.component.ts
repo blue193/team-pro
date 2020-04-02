@@ -7,7 +7,7 @@ import { ServiceDialogBoxComponent } from './servicedialogbox/servicedialogbox.c
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Item } from 'src/app/shared/_models/item.model';
-import { Service } from 'src/app/shared/_models/service.model';
+import { iService } from 'src/app/shared/_models/service.model';
 
 @Component({
   selector: 'xb-landing',
@@ -15,7 +15,7 @@ import { Service } from 'src/app/shared/_models/service.model';
   styleUrls: ['./landing.component.scss']
 })
 export class LandingComponent implements OnInit {
-  servicesData: Service[];
+  servicesData: iService[];
   items: Item[];
   videos: iVideo[];
   blogs: iBlog[];
@@ -94,19 +94,19 @@ export class LandingComponent implements OnInit {
     body.classList.add('landing');
     
     this.apiService.getCategory(11).subscribe((response: Category) => {
-      this.homeServicesCategory = response;
-    // convert data in to chunks to show 5 items per row. 
-    if (response.subcategory && response.subcategory.length > 5 ) {
-      // slice the list of categories in a gorup of five category. 
-      let categoryListRows = []
-      for (let i = 0; i < response.subcategory.length; i += 5) {
-        let chunk = response.subcategory.slice(i, i + 5)
-        categoryListRows.push(chunk)
-      }
-      this.homeServicesSubCategory = categoryListRows;
-    } else {
-      this.homeServicesSubCategory = [response.subcategory];
-    }
+        this.homeServicesCategory = response;
+        // convert data in to chunks to show 5 items per row. 
+        if (response.subcategory && response.subcategory.length > 5 ) {
+          // slice the list of categories in a gorup of five category. 
+          let categoryListRows = []
+          for (let i = 0; i < response.subcategory.length; i += 5) {
+            let chunk = response.subcategory.slice(i, i + 5)
+            categoryListRows.push(chunk)
+          }
+          this.homeServicesSubCategory = categoryListRows;
+        } else {
+          this.homeServicesSubCategory = [response.subcategory];
+        }
     });
 
     this.commonApiService.getAllVideos().subscribe(res => this.videos = res);

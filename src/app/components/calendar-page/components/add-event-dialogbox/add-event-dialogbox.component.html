@@ -3,6 +3,8 @@
   <h4  class="text-center">Add new event</h4>
 </div>
 
+<div *ngIf="apiMessage"><h4 class="text-center">{{apiMessage}}.</h4></div>
+
 <div class="addEventForm pt-2">
   
   <div class="formInput">
@@ -29,26 +31,80 @@
   </div>
   <!-- eventCategory =   {{eventCategory | json }} -->
 
-  <div class="formInput">
-    <mat-form-field appearance="fill">
-      <mat-label>Start Date</mat-label>
-      <input matInput [matDatepicker]="start_picker"  [(ngModel)]="eventStartDate">
-      <mat-datepicker-toggle matSuffix [for]="start_picker"></mat-datepicker-toggle>
-      <mat-datepicker #start_picker></mat-datepicker>
-    </mat-form-field>
+  <div class="formInput row">
+    <div class="col-md-6">
+      <mat-form-field appearance="fill">
+        <mat-label>Start Date</mat-label>
+        <input matInput [matDatepicker]="start_picker"  [(ngModel)]="eventStartDate">
+        <mat-datepicker-toggle matSuffix [for]="start_picker"></mat-datepicker-toggle>
+        <mat-datepicker #start_picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="col-md-6 pl-0">
+      <div class="row">
+        <div class="col-md-4">
+          <mat-form-field>
+            <mat-label>Hours</mat-label>
+            <input matInput maxlength="2" placeholder="Hours" [(ngModel)]="eventStartHours">
+          </mat-form-field>
+        </div>
+        <div class="col-md-4">
+          <mat-form-field>
+            <mat-label>Minutes</mat-label>
+            <input matInput maxlength="2" placeholder="Minutes" [(ngModel)]="eventStartMinutes">
+          </mat-form-field>
+        </div>
+        <div class="col-md-4">
+          <mat-form-field>
+            <mat-label>Seconds</mat-label>
+            <input matInput maxlength="2" placeholder="Seconds" [(ngModel)]="eventStartSeconds">
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div class="formInput">
-    <mat-form-field appearance="fill">
-      <mat-label>End Date</mat-label>
-      <input matInput [matDatepicker]="end_picker" [(ngModel)]="eventEndDate">
-      <mat-datepicker-toggle matSuffix [for]="end_picker"></mat-datepicker-toggle>
-      <mat-datepicker #end_picker></mat-datepicker>
-    </mat-form-field>
+
+  <div class="formInput row">
+    <div class="col-md-6">
+      <mat-form-field appearance="fill">
+        <mat-label>End Date</mat-label>
+        <input matInput [matDatepicker]="end_picker" [(ngModel)]="eventEndDate">
+        <mat-datepicker-toggle matSuffix [for]="end_picker"></mat-datepicker-toggle>
+        <mat-datepicker #end_picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="col-md-6 pl-0">
+      <div class="row">
+        <div class="col-md-4">
+          <mat-form-field>
+            <mat-label>Hours</mat-label>
+            <input matInput maxlength="2" placeholder="Hours" [(ngModel)]="eventEndHours">
+          </mat-form-field>
+        </div>
+        <div class="col-md-4">
+          <mat-form-field>
+            <mat-label>Minutes</mat-label>
+            <input matInput maxlength="2" placeholder="Minutes" [(ngModel)]="eventEndMinutes">
+          </mat-form-field>
+        </div>
+        <div class="col-md-4">
+          <mat-form-field>
+            <mat-label>Seconds</mat-label>
+            <input matInput maxlength="2" placeholder="Seconds" [(ngModel)]="eventEndSeconds">
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
   </div>
+
+  
 
   <div class="event_action text-center">
-    <button class="btn btn-primary mt-3" (click)="addEventBtnClick()">Add Event</button>
+    <button class="btn btn-primary mt-3" (click)="!eventProcessing ? addEventBtnClick() : false">
+      Add Event
+      <span *ngIf="eventProcessing" class="sm_spinner"><mat-spinner></mat-spinner></span>
+    </button>
   </div>
 
 </div>

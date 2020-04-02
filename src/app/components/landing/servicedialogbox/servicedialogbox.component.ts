@@ -10,7 +10,7 @@ export class ServiceDialogBoxComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<ServiceDialogBoxComponent>,
-    @Inject(MAT_DIALOG_DATA) public data) { }
+    @Inject(MAT_DIALOG_DATA) public service) { }
 
   ngOnInit() {
   }

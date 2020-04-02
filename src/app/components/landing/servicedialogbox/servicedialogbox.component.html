@@ -1,10 +1,10 @@
 <div class="mat_header"><span (click)="onNoClick()">×</span></div>
 <div class="modal-body profile_sec text-center">
-  <div class="pro_1"><img [src]="data.image" alt="profile"></div>
+  <div class="pro_1"><img  [src]="'data:image/png;base64,'+service.image.data" alt="profile"></div>
   <div class="des">
-    <h3>{{data.name}}<br>
-      <span>{{data.job}}</span>
+    <h3>{{service.firstName}} {{service.lastName}}<br>
+      <span>{{service.companyName}}</span>
     </h3>
-    <p class="common_p">{{data.comment}}</p>
+    <p class="common_p">{{service.description}}</p>
   </div>
 </div>

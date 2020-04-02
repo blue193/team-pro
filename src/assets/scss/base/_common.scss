@@ -8,3 +8,20 @@
 @media screen and (max-width: 767px){
  .sm_noMargin { margin: 0; }
 }
+
+.sm_spinner{
+ width: 22px !important;
+ height: 22px !important;
+  border-right-color: transparent;
+  color: inherit !important;
+  display: inline-block;
+  .mat-spinner{ 
+   width: 22px !important;
+   height: 22px !important;
+   svg{
+    width: 22px !important;
+    height: 22px !important;
+    circle { stroke: white; }
+   }
+  }
+}

@@ -24,14 +24,16 @@
                 <tr>
                   <th>Appointments</th>
                   <th>
-                    <a *ngIf="!viewAll" (click)="viewAllClick()">View all</a>
-                    <a *ngIf="viewAll" (click)="viewToday()">View Today</a>
+                    <a   (click)="viewAllClick()">View all</a>
+                    <!-- <a *ngIf="viewAll" (click)="viewToday()">View Today</a> -->
                   </th>
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let event of todayEvents">
-                  <td><a (click)="handleEvent('Clicked',event)">{{event.title}}</a></td>
+                  <td>
+                    <!-- <a (click)="editEvent(event)">Edit</a> -->
+                    <a (click)="handleEvent('Clicked',event)">{{event.title}}</a></td>
                   <td class="Appointment_time">{{event.start | date: 'h:mm a'}}</td>
                 </tr>
               </tbody>
@@ -41,14 +43,16 @@
         <div class="calander_right">
           <table class="fc-header" style="width:100%">
             <tr>
-              <td class="fc-header-left" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate"><span
+              <td  (click)="getAllEvents()"
+                  class="fc-header-left" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate"><span
                   class="fc-button fc-button-prev fc-state-default fc-corner-left fc-corner-right"
                   unselectable="on"><span class="fc-text-arrow">‹</span></span><span class="fc-header-space"></span>
               </td>
               <td class="fc-header-center"><span class="fc-header-title">
                   <h2>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h2>
                 </span></td>
-              <td class="fc-header-right" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate"><span
+              <td (click)="getAllEvents()"
+                  class="fc-header-right" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate"><span
                   class="fc-button fc-button-next fc-state-default fc-corner-left fc-corner-right"
                   unselectable="on"><span class="fc-text-arrow">›</span></span></td>
             </tr>
@@ -56,7 +60,8 @@
           <div [ngSwitch]="view">
             <mwl-calendar-month-view *ngSwitchCase="CalendarView.Month" [viewDate]="viewDate" [events]="allEventList"
               [refresh]="refresh" [activeDayIsOpen]="activeDayIsOpen" (dayClicked)="dayClicked($event.day)"
-              (eventClicked)="handleEvent('Clicked', $event.event)" >
+              (eventClicked)="handleEvent('Clicked', $event.event)"
+              [cellTemplate]="customCellTemplate">
             </mwl-calendar-month-view>
             <mwl-calendar-week-view *ngSwitchCase="CalendarView.Week" [viewDate]="viewDate" [events]="allEventList"
               [refresh]="refresh" (eventClicked)="handleEvent('Clicked', $event.event)"
@@ -70,6 +75,25 @@
           <div class="Add_event mt-5">
             <button class="add_btn" (click)="addNewEventClick()">+</button>
           </div>
+
+          <ng-template #customCellTemplate let-day="day" let-locale="locale">
+            <div class="cal-cell-top">
+              <span class="cal-day-number">{{ day.date | calendarDate:'monthViewDayNumber':locale }}</span>
+              <div class="cal-events ng-star-inserted" *ngIf="day.events.length > 0">
+                <span 
+                class="cal_event_title w100" 
+                *ngFor="let event of day.events"
+                [style.background]="event.color.primary" 
+                >{{event.title}}
+                <small style="display: none;"> {{ event | json }} </small>
+              </span>
+              
+              </div>
+            </div>
+            <!-- <small style="display: none;">There are {{ day | json }} events on this day </small> -->
+          </ng-template>
+
+
         </div>
       </div>
     </div>
