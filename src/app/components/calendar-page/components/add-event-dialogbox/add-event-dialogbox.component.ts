@@ -1,5 +1,4 @@
 import { MatDialogRef } from '@angular/material/dialog';
-import { IResponse } from './../../../../shared/_models/response.model';
 import { ApiService } from 'src/app/shared/_services/api.service';
 import { Component, OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common';
@@ -11,7 +10,7 @@ import { DatePipe } from '@angular/common';
 })
 export class AddEventDialogboxComponent implements OnInit {
   eventCategoryList: any; 
-  
+
   eventSubject: string; 
   eventCategory: number; 
   eventDetail: string; 
@@ -26,7 +25,6 @@ export class AddEventDialogboxComponent implements OnInit {
   eventEndSeconds: number; 
 
   eventProcessing: boolean = false; 
-
   apiMessage: string; 
   
 
@@ -39,7 +37,6 @@ export class AddEventDialogboxComponent implements OnInit {
   }
 
   addEventBtnClick() {
-    // console.log(' addEventBtnClick eventStartDate ', this.eventStartDate);
     const startDate = this.eventStartDate.toDateString() +' '+ this.eventStartHours+':'+this.eventStartMinutes+':'+this.eventStartSeconds;
     const endDate = this.eventEndDate.toDateString() +' '+ this.eventEndHours+':'+this.eventEndMinutes+':'+this.eventEndSeconds;
     let newEventData = {
@@ -52,7 +49,6 @@ export class AddEventDialogboxComponent implements OnInit {
     }
     this.eventProcessing = true; 
     this.apiService.addEvent(newEventData).subscribe((response) => {
-      console.log('addEvent  response ', response);
       this.eventProcessing = false; 
       if(response.status == 200 && response.message == 'Success'){
         this.apiMessage = 'Event Succesfully Added.';
