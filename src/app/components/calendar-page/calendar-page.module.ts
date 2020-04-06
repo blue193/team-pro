@@ -1,3 +1,4 @@
+import { ShortTime } from './../../shared/_pipes/short-time.pipe';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
@@ -17,7 +18,8 @@ const routes: Routes = [
 @NgModule({
   declarations: [
    CalendarComponent,
-   DateSuffix
+   DateSuffix,
+   ShortTime
   ],
   imports: [
     CommonModule,

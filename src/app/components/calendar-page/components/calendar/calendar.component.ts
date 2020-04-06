@@ -60,6 +60,7 @@ export class CalendarComponent implements OnInit {
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {    
     this.todayEvents = events;
     this.viewDate = date;
+    this.addNewEventClick(date);
   }
 
   // click on any event triggered a popup which show information of event, and allowed update on event detail. 
@@ -99,8 +100,8 @@ export class CalendarComponent implements OnInit {
   }
 
   // show dialog box to add new events. 
-  addNewEventClick(){
-    this.dialog.open(AddEventDialogboxComponent).afterClosed().subscribe(result =>   {
+  addNewEventClick(date){
+    this.dialog.open(AddEventDialogboxComponent, { data: date }).afterClosed().subscribe(result =>   {
       if (result){ this.getAllEvents(); }
     });
   }

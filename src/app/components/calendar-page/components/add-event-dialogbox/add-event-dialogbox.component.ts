@@ -1,6 +1,6 @@
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ApiService } from 'src/app/shared/_services/api.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { DatePipe } from '@angular/common';
 
 @Component({
@@ -30,7 +30,11 @@ export class AddEventDialogboxComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<AddEventDialogboxComponent>,
-    private apiService: ApiService, private datePipe: DatePipe) { }
+    @Inject(MAT_DIALOG_DATA) public dateClicked,
+    private apiService: ApiService, private datePipe: DatePipe) {
+      this.eventStartDate = dateClicked;
+      this.eventEndDate = dateClicked;
+     }
 
   ngOnInit() {
     this.apiService.getEventCategoryList().subscribe(response => this.eventCategoryList = response.data);

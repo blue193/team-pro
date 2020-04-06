@@ -61,7 +61,8 @@
             <mwl-calendar-month-view *ngSwitchCase="CalendarView.Month" [viewDate]="viewDate" [events]="allEventList"
               [refresh]="refresh" [activeDayIsOpen]="activeDayIsOpen" (dayClicked)="dayClicked($event.day)"
               (eventClicked)="handleEvent('Clicked', $event.event)"
-              [cellTemplate]="customCellTemplate">
+              [cellTemplate]="customCellTemplate"
+              [weekStartsOn]="1">
             </mwl-calendar-month-view>
             <mwl-calendar-week-view *ngSwitchCase="CalendarView.Week" [viewDate]="viewDate" [events]="allEventList"
               [refresh]="refresh" (eventClicked)="handleEvent('Clicked', $event.event)"
@@ -84,8 +85,11 @@
                 class="cal_event_title w100" 
                 *ngFor="let event of day.events"
                 [style.background]="event.color.primary" 
-                >{{event.title}}
-                <small style="display: none;"> {{ event | json }} </small>
+                >
+                <span class="eventShortTime"> {{ event.start | shortTime : day.date }} </span>
+                <span class="eventTitle">{{event.title}}</span>
+
+                <small style="display: none;"> {{ day | json }} </small>
               </span>
               
               </div>
