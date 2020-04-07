@@ -74,7 +74,7 @@
             </mwl-calendar-day-view>
           </div>
           <div class="Add_event mt-5">
-            <button class="add_btn" (click)="addNewEventClick()">+</button>
+            <button class="add_btn" (click)="addNewEventClick(viewDate)">+</button>
           </div>
 
           <ng-template #customCellTemplate let-day="day" let-locale="locale">

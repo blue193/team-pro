@@ -1078,10 +1078,8 @@ h6 {
         @include border-radius(50%);
         width: 100%;
       }
-
       .bottom_secR {
         float: left;
-
         .text_name {
           font-size: 14px;
           line-height: 18px;
@@ -1102,8 +1100,6 @@ h6 {
 :host ::ng-deep {
   .testimonial_sec {
     .slick-slide.slick-current{
-      
-      
       .main_sec_test{
         opacity: 1;
         .top_sec{
@@ -1118,7 +1114,6 @@ h6 {
         }
        }
     }
-
     .slick-dots {
       .slick-active{
          button{
@@ -1133,33 +1128,27 @@ h6 {
   }
 } 
 
-
-.landingtree-sec {
-  padding-top: 50px;
-  padding-bottom: 50px;
-  background: white;
-}
-@media (max-width: 767px) {
-  .landingtree-sec {
-    padding-top: 30px;
-    padding-bottom: 30px;
+.partner_sec {
+  background: url(../../../assets/images/market-place-bg.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 50px 0;
+  @include breakpoint(small) { padding: 30px 0; }
+  .sec_text {
+    h3 {
+      font-size: 24px;
+      color: #fff;
+      font-weight: 600;
+      @include breakpoint(x-small) { font-size: 18px; }
+    }
+    p {
+      color: rgba(255, 255, 255, 0.8);
+    }
   }
-}
-.landingtree-sec .landing-tree {
-  text-align: center;
-  padding-top: 0px;
-}
-.landingtree-sec .landing-tree img {
-  max-width: 100%;
-}
-.landingtree-sec .landing-tree h4 {
-  text-transform: uppercase;
-  margin-bottom: 10px;
-  font-weight: 500;
-  font-size: 20px;
-}
-.landingtree-sec .landing-tree a {
-  margin-top: 30px;
+
+  img {
+    margin: 0px 20px 0px 20px;
+  }
 }
 
 .cursor{cursor: pointer;}
@@ -1170,11 +1159,7 @@ h6 {
   transform: translateY(-50%);
   z-index: 1555;
   display: block !important;
-
-  @media (max-width: 1024px){
-    display: none !important;
-  }
-
+  @media (max-width: 1024px){ display: none !important; }
   .owl-prev {
     position: relative;
     left: -50px;
@@ -1182,7 +1167,6 @@ h6 {
     float: left;
     width: 40px;
     height: 40px;
-
     span{ display: none; }
     &:before  {
       position: absolute;
@@ -1195,7 +1179,6 @@ h6 {
       top: 0;
     }
   }
-
   .owl-next {
     position: relative;
     right: -50px;
@@ -1218,26 +1201,12 @@ h6 {
 }
 
 // Categories Listing 
-.category_out .row {
-  margin-bottom: 30px;
-}
-
-/////////////New work/////////////
-
+.category_out .row { margin-bottom: 30px; }
 ::ng-deep .nsm-dialog-btn-close > svg{
   color: #dd4813;
   border-radius: 100px;
   vertical-align: top!important;
 }
-
-::ng-deep .nsm-content{
-  width: fit-content;
-}
-
-::ng-deep .nsm-body{
-  margin-top: 20px;
-}
-
-a{
-  cursor: pointer;
-}
+::ng-deep .nsm-content{ width: fit-content; }
+::ng-deep .nsm-body{ margin-top: 20px; }
+a{  cursor: pointer; }

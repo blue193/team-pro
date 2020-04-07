@@ -129,10 +129,17 @@
 </div>
 
  
-
-<div class="container-fluid landingtree-sec">
-  <div class="container landing-tree">
-    <img src="../assets/images/landingtree-banner.png" alt="logo" />
+<div class="container-fluid partner_sec ">
+  <div class="container">
+    <div class=" text-center sec_icon"> </div>
+    <div class=" text-center sec_text">
+      <h3> Get Your Projects Funded</h3>
+      <p class="common_p">Compare up to 5 personal loan offers from multiple lenders in minutes through</p>
+    </div>
+    <div class="text-center">
+      <a href="http://lendingtree.com" target="_blank"><img
+          src="../assets/images/lendingtree/LT_logo_2018_Gradient_White.png" width="273" height="100" alt="logo" /></a>
+    </div>
   </div>
 </div>
 
@@ -172,9 +179,10 @@
           [video]="video">
         </xb-video>
       </div>
-      <div class="second_sec">
-        <xb-video class="col-lg-12 row" *ngFor="let video of videos | slice:12:13;" [video]="video">
-        </xb-video>
+      <div class="second_sec row">
+        <div class="col-lg-12">
+          <xb-video class="" *ngFor="let video of videos | slice:12:13;" [video]="video"></xb-video>
+        </div>
       </div>
       <div class="text-center Sec_btn">
         <a [routerLink]="['/videos']">See All Videos</a>

@@ -12,8 +12,8 @@ export class VideoDialogboxComponent implements OnInit {
   constructor(
     public sanitizer: DomSanitizer,
     public dialogRef: MatDialogRef<VideoDialogboxComponent>,
-    @Inject(MAT_DIALOG_DATA) public videoUrl) {
-        this.safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(videoUrl);		
+    @Inject(MAT_DIALOG_DATA) public dialogData) {
+        this.safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(dialogData.data);		
     }
 
   ngOnInit() {
