@@ -34,7 +34,12 @@ import { VideoDialogboxComponent } from './core/video/video-dialogbox/video-dial
 import { VideosComponent } from './components/videos/videos.component';
 import { CalendarDialogboxComponent } from './components/calendar-page/components/calendar-dialogbox/calendar-dialogbox.component'; 
 import { AddEventDialogboxComponent } from './components/calendar-page/components/add-event-dialogbox/add-event-dialogbox.component';
- 
+import { TermsComponent } from './components/pages/terms/terms.component';
+import { AboutUsComponent } from './components/pages/about-us/about-us.component';
+import { CharityComponent } from './components/pages/charity/charity.component';
+import { ServiceProviderComponent } from './components/pages/service-provider/service-provider.component';
+import { ContactComponent } from './components/pages/contact/contact.component';
+
 // pipes
 import { TruncatePipe } from './shared/_pipes/str-limit.pipe';
 import { AsFormArrayPipe } from './shared/_pipes/form-array.pipe';
@@ -74,7 +79,12 @@ import { AsFormArrayPipe } from './shared/_pipes/form-array.pipe';
     TruncatePipe,
     AsFormArrayPipe,
     CalendarDialogboxComponent,
-    AddEventDialogboxComponent
+    AddEventDialogboxComponent,
+    AboutUsComponent,
+    TermsComponent,
+    CharityComponent,
+    ServiceProviderComponent,
+    ContactComponent
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]

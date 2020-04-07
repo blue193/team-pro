@@ -25,7 +25,7 @@
                   <th>Appointments</th>
                   <th>
                     <a   (click)="viewAllClick()">View all</a>
-                    <!-- <a *ngIf="viewAll" (click)="viewToday()">View Today</a> -->
+                     
                   </th>
                 </tr>
               </thead>
@@ -61,7 +61,8 @@
             <mwl-calendar-month-view *ngSwitchCase="CalendarView.Month" [viewDate]="viewDate" [events]="allEventList"
               [refresh]="refresh" [activeDayIsOpen]="activeDayIsOpen" (dayClicked)="dayClicked($event.day)"
               (eventClicked)="handleEvent('Clicked', $event.event)"
-              [cellTemplate]="customCellTemplate">
+              [cellTemplate]="customCellTemplate"
+              [weekStartsOn]="1">
             </mwl-calendar-month-view>
             <mwl-calendar-week-view *ngSwitchCase="CalendarView.Week" [viewDate]="viewDate" [events]="allEventList"
               [refresh]="refresh" (eventClicked)="handleEvent('Clicked', $event.event)"
@@ -73,7 +74,7 @@
             </mwl-calendar-day-view>
           </div>
           <div class="Add_event mt-5">
-            <button class="add_btn" (click)="addNewEventClick()">+</button>
+            <button class="add_btn" (click)="addNewEventClick(viewDate)">+</button>
           </div>
 
           <ng-template #customCellTemplate let-day="day" let-locale="locale">
@@ -84,13 +85,15 @@
                 class="cal_event_title w100" 
                 *ngFor="let event of day.events"
                 [style.background]="event.color.primary" 
-                >{{event.title}}
-                <small style="display: none;"> {{ event | json }} </small>
+                >
+                <span class="eventShortTime"> {{ event.start | shortTime : day.date }} </span>
+                <span class="eventTitle">{{event.title}}</span>
+
+                <small style="display: none;"> {{ day | json }} </small>
               </span>
               
               </div>
             </div>
-            <!-- <small style="display: none;">There are {{ day | json }} events on this day </small> -->
           </ng-template>
 
 

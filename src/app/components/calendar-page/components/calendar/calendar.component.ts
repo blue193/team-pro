@@ -1,6 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { AddEventDialogboxComponent } from './../add-event-dialogbox/add-event-dialogbox.component';
-import { iMyEvent,  iCalendarEvent, cCalendarEvent } from './../../../../shared/_models/event.model';
+import { cCalendarEvent } from './../../../../shared/_models/event.model';
 import { CalendarDialogboxComponent } from './../calendar-dialogbox/calendar-dialogbox.component';
 import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { startOfDay, endOfDay, subDays, addDays, endOfMonth, isSameDay, isSameMonth, addHours, startOfMonth, startOfWeek } from 'date-fns';
@@ -38,18 +38,9 @@ export class CalendarComponent implements OnInit {
 
   CalendarView = CalendarView;
   viewDate: Date = new Date();
-  modalData: {
-    event: CalendarEvent;
-  };
-  refresh: Subject<any> = new Subject();
-  
-  // allEventList: iCalendarEvent[] = [];
-  // todayEvents: iCalendarEvent[] = [];
-  
+  modalData: { event: CalendarEvent; }; 
   allEventList: cCalendarEvent[] = [];
   todayEvents: CalendarEvent[] = [];
-
-
   activeDayIsOpen: boolean = false;
   users: User[];
   viewAll: boolean = true; 
@@ -69,25 +60,8 @@ export class CalendarComponent implements OnInit {
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {    
     this.todayEvents = events;
     this.viewDate = date;
+    this.addNewEventClick(date);
   }
-
-  // eventTimesChanged({
-  //   event,
-  //   newStart,
-  //   newEnd
-  // }: CalendarEventTimesChangedEvent): void {
-  //   this.events = this.events.map(iEvent => {
-  //     if (iEvent === event) {
-  //       return {
-  //         ...event,
-  //         start: newStart,
-  //         end: newEnd
-  //       };
-  //     }
-  //     return iEvent;
-  //   });
-  //   this.handleEvent('Dropped or resized', event);
-  // }
 
   // click on any event triggered a popup which show information of event, and allowed update on event detail. 
   handleEvent(action: string, event: CalendarEvent): void {
@@ -97,24 +71,7 @@ export class CalendarComponent implements OnInit {
     });
   }
 
-  // addEvent(): void {
-  //   this.events = [
-  //     ...this.events,
-  //     {
-  //       title: 'New event',
-  //       description: 'Description of New event',
-  //       start: startOfDay(new Date()),
-  //       end: endOfDay(new Date()),
-  //       color: iEventColors.meeting,
-  //       draggable: true,
-  //       resizable: {
-  //         beforeStart: true,
-  //         afterEnd: true
-  //       }
-  //     }
-  //   ];
-  // }
-
+  // get a list off all event on base of range. 
   getAllEvents(){
     let dateRange = this.getDateRange();
     this.apiService.getAllCalendarEvents(dateRange).subscribe(response => {
@@ -128,7 +85,7 @@ export class CalendarComponent implements OnInit {
   }
   
   deleteEvent(eventToDelete: CalendarEvent) {
-    //console.log(' deleteEvent');
+    // console.log(' deleteEvent');
     // this.events = this.events.filter(event => event !== eventToDelete);
   }
 
@@ -143,8 +100,8 @@ export class CalendarComponent implements OnInit {
   }
 
   // show dialog box to add new events. 
-  addNewEventClick(){
-    this.dialog.open(AddEventDialogboxComponent).afterClosed().subscribe(result =>   {
+  addNewEventClick(date){
+    this.dialog.open(AddEventDialogboxComponent, { data: date }).afterClosed().subscribe(result =>   {
       if (result){ this.getAllEvents(); }
     });
   }
@@ -155,20 +112,12 @@ export class CalendarComponent implements OnInit {
     this.viewAll = true; 
   }
 
-  // only show today event on left side. 
-  viewToday(){
-    // this.todayEvents = this.allEventList.filter(iEvent =>  iEvent.start.toDateString() == new Date().toDateString());
-    this.viewAll = false; 
-  }
-
-
- 
-
+  // function to get the start and end date range on base of calendar view showng 
+  // if month then get from 1st of month to end of month. 
+  // if week then range will be one week 
   getDateRange(){
-    
     let startRange = new Date();
     let endRange = new Date();
-
     if (this.view == 'month'){
       startRange = startOfMonth(this.viewDate);
       endRange = endOfMonth(this.viewDate);  
@@ -179,12 +128,10 @@ export class CalendarComponent implements OnInit {
       startRange = startOfDay(this.viewDate);  
       endRange = endOfDay(this.viewDate);
     }
-
     return {
       'ParaFromDate':  this.datePipe.transform(startRange, 'MM/dd/yyyy'),
       'ParaToDate':  this.datePipe.transform( endRange, 'MM/dd/yyyy'),
     }
-   
   }
 
   

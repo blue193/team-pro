@@ -520,11 +520,8 @@ body {
 }
 
 .security_sec {
-  background: url(../../../assets/images/security_bg.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  padding: 50px 0;
-
+  padding: 20px 15px 60px;
+  background: #eeeeee;
   @include breakpoint(small) {
     padding: 30px 0;
   }
@@ -541,7 +538,10 @@ body {
     }
 
     p {
-      color: rgba(255, 255, 255, 0.8);
+      
+      color: #666;
+      max-width: 500px;
+      margin: 0px auto 20px;
     }
   }
 }
@@ -1007,11 +1007,11 @@ h6 {
   padding-top: 31px;
 }
 
+
 .testimonial_sec {
   background: url(../../../assets/images/testimonials_bg.jpg) left bottom no-repeat;
   background-size: cover;
   padding: 55px 0 45px 0;
-
   @include breakpoint(small) {
     padding: 30px 0 15px 0;
   }
@@ -1035,6 +1035,7 @@ h6 {
         position: relative;
 
         &:before {
+          color: white;
           position: absolute;
           content: '';
           top: 2px;
@@ -1077,10 +1078,8 @@ h6 {
         @include border-radius(50%);
         width: 100%;
       }
-
       .bottom_secR {
         float: left;
-
         .text_name {
           font-size: 14px;
           line-height: 18px;
@@ -1097,27 +1096,51 @@ h6 {
   }
 }
 
+ 
+:host ::ng-deep {
+  .testimonial_sec {
+    .slick-slide.slick-current{
+      .main_sec_test{
+        opacity: 1;
+        .top_sec{
+          background: #ef3500 !important;
+          p{ 
+            color: white !important; 
+            &:before {
+              background: url(../../../assets/images/quated_wh.png) no-repeat !important;
+              background-size: 100% !important;
+            }
+          }
+        }
+       }
+    }
+    .slick-dots {
+      .slick-active{
+         button{
+          &:before{
+            opacity: 1;
+            color: #f45117; 
+          }
+         }
+      }
+    }
+    .slick-list{ padding: 30px 0px !important; }
+  }
+} 
+
 .partner_sec {
   background: url(../../../assets/images/market-place-bg.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   padding: 50px 0;
-
-  @include breakpoint(small) {
-    padding: 30px 0;
-  }
-
+  @include breakpoint(small) { padding: 30px 0; }
   .sec_text {
     h3 {
-      font-size: 26px;
+      font-size: 24px;
       color: #fff;
       font-weight: 600;
-
-      @include breakpoint(x-small) {
-        font-size: 18px;
-      }
+      @include breakpoint(x-small) { font-size: 18px; }
     }
-
     p {
       color: rgba(255, 255, 255, 0.8);
     }
@@ -1136,11 +1159,7 @@ h6 {
   transform: translateY(-50%);
   z-index: 1555;
   display: block !important;
-
-  @media (max-width: 1024px){
-    display: none !important;
-  }
-
+  @media (max-width: 1024px){ display: none !important; }
   .owl-prev {
     position: relative;
     left: -50px;
@@ -1148,7 +1167,6 @@ h6 {
     float: left;
     width: 40px;
     height: 40px;
-
     span{ display: none; }
     &:before  {
       position: absolute;
@@ -1161,7 +1179,6 @@ h6 {
       top: 0;
     }
   }
-
   .owl-next {
     position: relative;
     right: -50px;
@@ -1184,26 +1201,12 @@ h6 {
 }
 
 // Categories Listing 
-.category_out .row {
-  margin-bottom: 30px;
-}
-
-/////////////New work/////////////
-
+.category_out .row { margin-bottom: 30px; }
 ::ng-deep .nsm-dialog-btn-close > svg{
   color: #dd4813;
   border-radius: 100px;
   vertical-align: top!important;
 }
-
-::ng-deep .nsm-content{
-  width: fit-content;
-}
-
-::ng-deep .nsm-body{
-  margin-top: 20px;
-}
-
-a{
-  cursor: pointer;
-}
+::ng-deep .nsm-content{ width: fit-content; }
+::ng-deep .nsm-body{ margin-top: 20px; }
+a{  cursor: pointer; }

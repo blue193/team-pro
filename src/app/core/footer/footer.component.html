@@ -2,23 +2,20 @@
   <div class="container-fluid footer_sec">
     <div class="container">
       <div class="row">
-        <div class="col-12 col-sm-6 col-md-3 col-lg-4 col-xl-4 footer_box1">
-          <a href="index.html" class="logo_f"
-            >
+        <div class="col-12 col-sm-6 col-md-5 col-lg-5 col-xl-5 footer_box1">
+          <a href="index.html" class="logo_f">
             <img
               src="../assets/images/logo1.png"
               width="120"
               height="49"
               alt="logo"
-              class="black_logo"
-          />
+              class="black_logo" />
           <img
           src="../assets/images/logo_footer.png"
           width="120"
           height="49"
           alt="logo"
-          class="white_logo"
-       />
+          class="white_logo" />
         </a>
           <p class="common_p">
             Our online marketplace provides the platform for consumers to find
@@ -28,50 +25,30 @@
           </p>
           <a href="about-us.html"> Read More </a>
         </div>
-        <div class="col-12 col-sm-6 col-md-4 col-lg-4 footer_box2">
-          <h2>Watch videos</h2>
-          <div class="footer_video">
-            <div class="footer_video_l">
-              <img alt="pic" src="../assets/images/footer_vid.jpg" />
-            </div>
-            <div class="footer_video_R">
-              <p>
-                <a href=""> How to track my project ? </a>
-                <i class="date">
-                  <img alt="pic" src="../assets/images/clock_footer.png" />
-                  04:30</i
-                >
-              </p>
-            </div>
-          </div>
-          <div class="footer_video">
-            <div class="footer_video_l">
-              <img alt="pic" src="../assets/images/footer_vid1.jpg" />
-            </div>
-            <div class="footer_video_R">
-              <p>
-                <a href=""> How to add category? </a>
-                <i class="date">
-                  <img alt="pic" src="../assets/images/clock_footer.png" />
-                  04:30</i
-                >
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 col-sm-6 col-md-5 col-lg-4 col-xl-4 footer_box">
+        
+        <div class="col-12 col-sm-6 col-md-5 col-lg-5 col-xl-5 footer_box">
           <h2>Useful Links</h2>
           <ul>
-            <li><a href="about-us.html">About Xpertsbid</a></li>
-            <li><a href="javascript:void(0)">Blog</a></li>
+            <li><a [routerLink]="['/about-us']">About Xpertsbid</a></li>
             <li><a href="javascript:void(0)">Feedback</a></li>
             <li><a href="javascript:void(0)">Lending Tree</a></li>
-            <li><a href="terms.html">Terms of Use</a></li>
-            <li><a href="charity.html">Charity</a></li>
-            <li><a href="contact.html">Contact us</a></li>
-            <li><a href="sign-up.html">Sign up</a></li>
-            <li><a href="service-provider.html">Service Provider</a></li>
+            <li><a href="javascript:void(0)">Upstart</a></li>
+            <li><a [routerLink]="['/terms']">Terms of Use</a></li>
+            <li><a [routerLink]="['/charity']">Charity</a></li>
+            <li><a [routerLink]="['/contact']">Contact us</a></li>
+            <li><a [routerLink]="['/service-provider']">Service Provider</a></li>
           </ul>
+        </div>
+        <div class="col-12 col-sm-12 col-md-2 col-lg-2 footer_box2">
+          <h2>PARTNERS</h2>
+          <div class="partnerlogo-main">
+            <div class="partner-logo">
+              <a href="javascript:void(0)"><img alt="pic" src="../assets/images/lendingtree/lendingtree-logo.png"></a>
+            </div>
+            <div class="partner-logo">
+              <a href="javascript:void(0)" target="_blank">Escrow.com</a>
+            </div>
+            </div>
         </div>
       </div>
     </div>

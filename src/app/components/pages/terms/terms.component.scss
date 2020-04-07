@@ -1,0 +1,39 @@
+.privacy-sec {
+ padding: 43px 0px;
+ > p {
+  color: #868686;
+  float: left;
+  line-height: 23px;
+  width: 100%;
+ }
+ h1 {
+  color: #252525;
+  width: 100%;
+  float: left;
+  font-size: 18px;
+ }
+ > ul {
+  display: block;
+  padding: 0px;
+  float: left;
+ }
+ .list_items {
+  width: 30%;
+  float: left;
+  li {
+   background: rgba(0, 0, 0, 0) url("../../../../assets/images/tick.png") no-repeat scroll left center;
+   display: inline-block;
+   line-height: 23px;
+   margin-bottom: 9px;
+   padding-left: 22px;
+   width: 100%;
+   font-weight: 600;
+  }
+  @media screen and (max-width: 991px) {
+   width: 50%;
+  }
+  @media screen and (max-width: 767px) {
+   width: 100%;
+  }
+ }
+}
