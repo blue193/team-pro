@@ -1,10 +1,10 @@
-@media screen and (max-width: 767px) {
- .about_nav_desk {
-  display: none;
- }
-}
+// @media screen and (max-width: 767px) {
+//  .about_nav_desk {
+//   display: none;
+//  }
+// }
 .cntr-link {
- background: #f8f8f8 none repeat scroll 0 0;
+ // background: #f8f8f8 none repeat scroll 0 0;
  border-bottom: 1px solid #e5e5e5;
  ul {
   float: none;
@@ -46,12 +46,16 @@
   font-size: 14px;
   line-height: 23px;
  }
- .right-txt-hding {
-  border-bottom: 1px solid #ddd;
-  font-size: 21px;
-  padding: 0 60px 11px;
-  position: relative;
- }
+
+}
+
+.tabContent{overflow-x: hidden;}
+
+.right-txt-hding {
+ border-bottom: 1px solid #ddd;
+ font-size: 21px;
+ padding: 0 60px 11px;
+ position: relative;
 }
 
 .right-txt-hding::before {
@@ -62,7 +66,8 @@
  position: absolute;
  width: 51px;
 }
-.left-img-sec {
+
+.about .left-img-sec {
  text-align: center;
  .img-div {
   border-radius: 150px;
@@ -74,3 +79,271 @@
   }
  }
 }
+
+
+ 
+.charity-sec > p {
+ color: #323232;
+ font-size: 14px;
+ margin-bottom: 0;
+ margin-top: 20px;
+}
+.charity-sec.investor {
+ padding-top: 15px;
+}
+.investor h1 {
+ margin-bottom: 50px;
+}
+.charity-sec.investor strong {
+ display: block;
+ padding-top: 10px;
+}
+.charity-sec.investor strong a
+{
+color:#4c4c4c;
+}
+
+.investor h1 {
+ margin-bottom: 50px;
+}
+.about_team {
+ padding-bottom: 18px;
+ padding-top: 15px;
+}
+
+.team-info {
+ padding: 0;
+}
+
+.team-members {
+ text-align: center;
+ padding-bottom:30px;
+}
+
+.team-members p {
+ font-size: 13px;
+ padding-top: 8px;
+ color: #555;
+}
+.xb-sec {
+ float: left;
+ margin-bottom: 20px;
+ margin-top: 35px;
+}
+
+.bids-sec h1 {
+	color: #f95421;
+	font-size: 20px;
+	margin: 15px 0 2px;
+}
+.bids-sec span {
+	display: inline-block;
+	float: none;
+	font-size: 16px;
+}
+ 
+.bids-sec .round-btn {
+	display: inline-block;
+}
+
+.img-wrap {
+	height: 118px;
+	width: 118px;
+	border: 1px solid #d9d9d9;
+	border-radius: 70px;
+	float: none;
+	display: inline-block;
+	overflow: hidden;
+}
+.img-wrap img {
+	width: 100%;
+	vertical-align: top;
+}
+span.lght-color-p {
+ color: #757574;
+ font-size: 13px;
+}
+
+
+
+.advisory-text {
+ float: right;
+ padding-right: 15px;
+ width: 73%;
+}
+.advisory-img {
+ float: left;
+ width: 23%;
+}
+.advisory-text > h1 {
+ text-align: left;
+}
+.advisory-text .lght-color-p {
+ float: left;
+ text-align: left;
+ width: 100%;
+ margin-bottom:5px;
+}
+.advisory-text > p {
+ margin-bottom: 0;
+  text-align: justify;
+}
+.advisory-sec {
+ min-height: 400px;
+  margin: 0px 0 20px;
+}
+
+
+
+.advisory-sec {
+ background: #fcfcfc none repeat scroll 0 0;
+ border: 1px solid #ddd;
+ margin-top: 0;
+ min-height: 215px;
+ padding: 15px;
+}
+.advsr-sec {
+ padding-bottom: 10px;
+}
+.advisory-img .img-wrap {
+ margin-top: 27px;
+}
+.advisory-M_text {
+ float: left;
+ text-align: left;
+ display:none;
+}
+.advisory {
+ float: left;
+ text-align: justify;
+ width: 100%;
+ display:none;
+ padding:15px;
+}
+.advisory-sec .advisory1{
+ display:none;
+ float: left;
+ text-align: justify;
+ width: 100%;
+ padding:15px;
+
+}
+.advisory-sec .advisory2 {
+ display:none;
+ float: left;
+ text-align: justify;
+ width: 100%;
+ padding:15px;
+
+}
+
+.advisory-sec .advisory3 {
+ float: left;
+ text-align: justify;
+ width: 100%;
+ display:none;
+ padding:15px;
+}
+.show-more-btn {
+ color: #dc5127;
+ text-align: right;
+ float:right;
+}
+.hide-btn {
+ color: #dc5127;
+ float: right;
+ text-align: right;
+  display: none;
+}
+
+.show-more-btn1 {
+ color: #dc5127;
+ text-align: right;
+ float:right;
+}
+.hide-btn1 {
+ color: #dc5127;
+ float: right;
+ text-align: right;
+  display: none;
+}
+
+.show-more-btn2 {
+ color: #dc5127;
+ text-align: right;
+ float:right;
+}
+.hide-btn2 {
+ color: #dc5127;
+ float: right;
+ text-align: right;
+  display: none;
+}
+
+.show-more-btn3 {
+ color: #dc5127;
+ text-align: right;
+ float:right;
+}
+.hide-btn3 {
+ color: #dc5127;
+ float: right;
+ text-align: right;
+  display: none;
+}
+
+
+.charity-sec {
+ padding: 80px;
+ text-align: center;
+}
+.charity-sec.investor {
+ padding-top: 15px;
+}
+
+
+
+ 
+.mail-info {
+ padding: 60px 0 0 140px ;
+}
+.mail-info > h1 {
+ padding: 0;
+}
+.support-img img {
+ vertical-align: middle;
+ border-style: none;
+}
+
+.about-contact-info {
+	width: 100%;
+}
+.about-contact-info  p {
+ margin-bottom: 2px;
+ margin-top: 10px;
+ float:left;
+ width:100%;
+}
+.about-contact-info  h1 {
+ color: #08384d;
+ font-size: 21px;
+}
+
+
+.blue-text {
+ background: rgba(0, 0, 0, 0) url("../../../../assets/images/emailOrange.png") no-repeat scroll left center;
+ color: #08384d;
+ float: left;
+ font-size: 16px;
+ font-weight: 600;
+ padding-left: 30px;
+ width: 100%;
+}
+
+.text-left{ text-align: left;}
+
+
+:host ::ng-deep {
+ .mat-tab-label{ margin: 0 auto; }
+}
+ 
