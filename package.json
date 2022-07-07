@@ -30,7 +30,7 @@
     "date-fns": "^2.11.0",
     "flatpickr": "^4.6.3",
     "jquery": "^3.3.1",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "ngx-cookie": "^4.1.2",
     "ngx-owl-carousel": "^2.0.7",
     "ngx-owl-carousel-o": "^3.0.0",
